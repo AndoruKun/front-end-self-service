@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { MethodServices } from '../../../service/method-service';
 
 @Injectable()
 export class AuthService {
-    constructor() {}
+    constructor(private methodService:MethodServices) {}
 
     getAuth$(): Observable<{}> {
         return of({});
