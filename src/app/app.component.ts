@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ChildActivationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
+import { catchError, filter, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { MethodServices } from '../service/method-service';
+import { of } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +13,8 @@ import { filter } from 'rxjs/operators';
 })
 export class AppComponent {
     title = 'sb-admin-angular';
-    constructor(public router: Router, private titleService: Title) {
+
+    constructor(public router: Router, private titleService: Title, private methodServices: MethodServices) {
         this.router.events
             .pipe(filter(event => event instanceof ChildActivationEnd))
             .subscribe(event => {

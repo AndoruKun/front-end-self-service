@@ -3,6 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Location } from '@angular/common';
 import { environment } from '../environments/environment'
 import { Router } from '@angular/router';
+import swal from 'sweetalert2';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({providedIn:'root'})
 
@@ -16,27 +19,28 @@ export class MethodServices {
     access_token:any;
     token:any
     title:any
+    apiLoaded: Observable<boolean> | undefined;
 
     constructor(private http:HttpClient,
         private location:Location,
-                private router:Router) {}
+                private router:Router) {
+    }
 
 
     processToken(remember_status:any, username:any, password:any, callback:any)
     {
         var dataBody =
             {
-                "username":username,
+                "email":username,
                 "password":password
             }
 
-        this.http.post(environment.baseUrl + "/users/login",dataBody,{
+        this.http.post<any>(environment.baseUrl + "/users/login",dataBody,{
             headers: {
                 "Content-Type": "application/json"
-            },
-        })
-            .subscribe(hasil => {
-                    this.getToken(remember_status,hasil,username,password);
+            }
+        }).subscribe(result => {
+                    this.getToken(remember_status,result,username,password);
                     callback(this.error_msg,this.access_token)
                 },
                 err => {
@@ -51,20 +55,20 @@ export class MethodServices {
     getToken(remember_status:any,tok:any,username:any,password:any)
     {
         this.token = tok;
-        this.access_token = tok.access_token;
+        this.access_token = tok.Authorization;
 
         this.token_status = true;
         this.title = this.location.prepareExternalUrl(this.location.path())
-        var login_exists = this.title.indexOf('/login')
+        var login_exists = this.title.indexOf('/auth/login')
 
         if (typeof(Storage) !== 'undefined')
-            localStorage.setItem("token",this.access_token)
+            localStorage.setItem("Token",this.access_token)
 
-        if (this.access_token !== null && login_exists !== -1) {
+        if (this.access_token !== null) {
             this.error_msg = "";
             if (localStorage.getItem('username') !== null) //user
             {
-                localStorage.removeItem('ZEU@AL!')
+                localStorage.removeItem('username')
             }
             if (remember_status == true){
                 localStorage.setItem('username',username)
@@ -78,11 +82,11 @@ export class MethodServices {
                 localStorage.setItem('password',password)
             }
 
-            this.router.navigate(["/"]);
+            this.router.navigate(["/dashboard"]);
         }
     }
 
-    getUrlApi(urlApi:string, token:string, callback:any, params?:string) {
+    getUrlApi(urlApi:any, token:any, callback:any, params?:any) {
         let tempParams = "";
         let api = environment.baseUrl + urlApi
         if(typeof token == "undefined") {
@@ -95,24 +99,23 @@ export class MethodServices {
 
         this.http.get(api, {
             headers: {
-                Authorization: "Bearer" + token
+                Authorization: token
             }
         }).subscribe(result => {
             callback(result)
         }, error => {
-            this.getError(error,error.status)
-            this.error_page_code = error.status
+            this.error_page_code = 400
             callback('Error')
         })
     }
 
     getError(err_prev:any,err_status:any){
         this.token_status = false;
-        if (typeof(err_prev.error.error_description) != 'undefined'){
-            this.error_msg = err_prev.error.error_description;
+        if (err_prev.error){
+            this.error_msg = err_prev.message;
         }
         else{
-            this.error_msg = err_prev.error.description;
+            this.error_msg = err_prev.message;
         }
 
         this.error_code = err_status;
@@ -129,6 +132,70 @@ export class MethodServices {
         }
         else{
             this.error_msg = 'Please Check your connection.'
+        }
+    }
+
+    getPosition(): Promise<any>
+    {
+        return new Promise((resolve, reject) => {
+
+            navigator.geolocation.getCurrentPosition(resp => {
+
+                    resolve({lng: resp.coords.longitude, lat: resp.coords.latitude});
+                },
+                err => {
+                    reject(err);
+                });
+        });
+
+    }
+    postData(dataObj:any,token:any,urlapi:any,callback:any){
+
+        let dataBody = dataObj
+        this.http.post(environment.baseUrl + urlapi
+            , dataBody
+            ,{
+                headers: {
+                    Authorization: token,
+                    "Content-Type": "application/json"
+                }
+            }
+        ).subscribe(hasil => {-+
+                console.log(hasil)
+                callback(hasil)
+            }
+            , err => {
+                callback(err,'')
+            }
+        )
+    }
+    sweetAlert(type:any,msg:any) {
+        switch(type) {
+            case "error":
+                // @ts-ignore
+                swal.fire({
+                    title: 'Error',
+                    text: msg,
+                    icon: 'error',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Confirm',
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                })
+                break
+            case "success":
+                // @ts-ignore
+                swal.fire({
+                    title: 'Success',
+                    text: msg,
+                    icon: 'success',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Confirm',
+                    customClass: {
+                        confirmButton: "btn btn-primary"
+                    }
+                })
         }
     }
 }

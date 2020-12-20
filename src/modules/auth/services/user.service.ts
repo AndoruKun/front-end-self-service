@@ -1,22 +1,36 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, of, ReplaySubject } from 'rxjs';
 
 import { User } from '../models';
+import { MethodServices } from '../../../service/method-service';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
 
 const userSubject: ReplaySubject<User> = new ReplaySubject(1);
+@Injectable({ providedIn: 'root' })
 
-@Injectable()
+
 export class UserService {
-    constructor() {
-        this.user = {
-            id: '123',
-            firstName: 'Start',
-            lastName: 'Bootstrap',
-            email: 'no-reply@startbootstrap.com',
-        };
+
+
+    constructor(private methodService:MethodServices,
+                private http:HttpClient) {
+
+        this.methodService.getUrlApi('/api/v1/employee',
+            localStorage.getItem('Token'),
+            (res:any) => {
+                this.user = {
+                    firstName: res.firstName,
+                    lastName: res.lastName,
+                    email: res.email,
+                    employeeNo: res.employeeNo
+                }
+            })
     }
 
     set user(user: User) {
+        console.log(user)
         userSubject.next(user);
     }
 

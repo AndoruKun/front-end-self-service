@@ -1,0 +1,14 @@
+span.sb-nav-fixed
+    sb-top-nav
+    #layoutSidenav
+        #layoutSidenav_nav
+            sb-side-nav(
+                [sideNavItems]='sideNavItems',
+                [sideNavSections]='sideNavSections'
+            )
+        #layoutSidenav_content.scrollable(
+            (click)='closeSideNavIfOpen()'
+        )
+            main
+                ng-content
+            sb-footer

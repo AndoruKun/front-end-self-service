@@ -30,9 +30,19 @@ const routes: Routes = [
             import('modules/error/error-routing.module').then(m => m.ErrorRoutingModule),
     },
     {
-        path: 'tables',
+        path: 'my-team',
         loadChildren: () =>
-            import('modules/tables/tables-routing.module').then(m => m.TablesRoutingModule),
+            import('modules/my-team/my-team-routing.module').then(m => m.MyTeamRoutingModule),
+    },
+    {
+        path: 'check-in',
+        loadChildren: () =>
+            import('modules/check-in/check-in-routing.module').then(m => m.CheckInRoutingModule),
+    },
+    {
+        path: 'check-out',
+        loadChildren: () =>
+            import('modules/check-out/check-out-routing.module').then(m => m.CheckOutRoutingModule),
     },
     {
         path: 'version',

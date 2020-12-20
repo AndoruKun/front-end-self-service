@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { MethodServices } from '../../../../service/method-service';
 
 @Component({
     selector: 'sb-dashboard-head',
@@ -11,5 +12,7 @@ export class DashboardHeadComponent implements OnInit {
     @Input() hideBreadcrumbs = false;
 
     constructor() {}
-    ngOnInit() {}
+    ngOnInit() {
+
+    }
 }

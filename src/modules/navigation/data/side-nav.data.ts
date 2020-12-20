@@ -2,17 +2,29 @@ import { SideNavItems, SideNavSection } from '@modules/navigation/models';
 
 export const sideNavSections: SideNavSection[] = [
     {
-        text: 'CORE',
-        items: ['dashboard'],
+        text: 'PERSONAL',
+        items: ['dashboard', 'my_team', 'timesheet', 'settings'],
     },
     {
-        text: 'INTERFACE',
-        items: ['layouts', 'pages'],
+        text: 'SELF SERVICE',
+        items: ['absence', 'benefit', 'personal'],
     },
     {
-        text: 'ADDONS',
-        items: ['charts', 'tables'],
+        text: 'MY REQUEST',
+        items: ['request_absence', 'request_benefit', 'request_checkin_checkout', 'request_personal'],
     },
+    {
+        text: 'Check In/Out',
+        items: ['check_in', 'check_out']
+    },
+    {
+        text: 'APPROVAL',
+        items: ['approval_absence', 'approval_benefit', 'approval_personal', 'approval_checkin_out']
+    },
+    {
+        text: 'APPROVAL HISTORY',
+        items: ['approval_history_absence', 'approval_history_benefit', 'approval_history_personal', 'approval_history_checkin_out']
+    }
 ];
 
 export const sideNavItems: SideNavItems = {
@@ -21,68 +33,165 @@ export const sideNavItems: SideNavItems = {
         text: 'Dashboard',
         link: '/dashboard',
     },
-    layouts: {
-        icon: 'columns',
-        text: 'Layouts',
+    absence: {
+        icon: 'user-clock',
+        text: 'Absence',
+        link: '/self-service/absence'
+    },
+    benefit: {
+        icon: 'user-plus',
+        text: 'Benefit',
+        link: '/self-service/benefit'
+    },
+    personal: {
+        icon: 'user',
+        text: 'Personal',
         submenu: [
             {
-                text: 'Static Navigation',
-                link: '/dashboard/static',
+                text: 'Biodata',
+                link: '/self-service/pesonal/biodata'
             },
             {
-                text: 'Light Sidenav',
-                link: '/dashboard/light',
+                text: 'Address',
+                link: '/self-service/pesonal/address'
             },
+            {
+                text: 'Family',
+                link: '/self-service/pesonal/family'
+            }
         ],
     },
-    pages: {
-        icon: 'book-open',
-        text: 'Pages',
+    request_absence: {
+        icon: 'user-clock',
+        text: 'Absence',
+        link: '/request/absence'
+    },
+    request_benefit: {
+        icon: 'user-plus',
+        text: 'Benefit',
+        link: '/request/benefit'
+    },
+    request_checkin_checkout: {
+        icon: 'clock',
+        text: 'Check In / Out',
         submenu: [
             {
-                text: 'Authentication',
-                submenu: [
-                    {
-                        text: 'Login',
-                        link: '/auth/login',
-                    },
-                    {
-                        text: 'Register',
-                        link: '/auth/register',
-                    },
-                    {
-                        text: 'Forgot Password',
-                        link: '/auth/forgot-password',
-                    },
-                ],
+                text: 'Check In',
+                link: '/request/checkin'
             },
             {
-                text: 'Error',
-                submenu: [
-                    {
-                        text: '401 Page',
-                        link: '/error/401',
-                    },
-                    {
-                        text: '404 Page',
-                        link: '/error/404',
-                    },
-                    {
-                        text: '500 Page',
-                        link: '/error/500',
-                    },
-                ],
+                text: 'Check Out',
+                link: '/request/checkout'
+            }
+        ]
+    },
+    request_personal: {
+        icon: 'user',
+        text: 'Personal',
+        submenu: [
+            {
+                text: 'Biodata',
+                link: '/request/personal/biodata'
             },
-        ],
+            {
+                text: 'Address',
+                link: '/request/personal/address'
+            },
+            {
+                text: 'Family',
+                link: '/request/personal/family'
+            }
+        ]
     },
-    charts: {
-        icon: 'chart-area',
-        text: 'Charts',
-        link: '/charts',
+    my_team: {
+        icon: 'user-friends',
+        text: 'My Team',
+        link: '/my-team'
     },
-    tables: {
-        icon: 'table',
-        text: 'Tables',
-        link: '/tables',
+    check_in: {
+        icon: 'sign-in-alt',
+        text: 'Check In',
+        link: "/check-in"
+    },
+    check_out: {
+        icon: 'sign-out-alt',
+        text: 'Check Out',
+        link: "/check-out"
+    },
+    timesheet: {
+        icon: 'calendar-alt',
+        text: 'Timesheet',
+        link: '/timesheet'
+    },
+    approval_absence: {
+        icon: 'user-clock',
+        text: 'Absence',
+        link: '/approval/absence'
+    },
+    approval_benefit: {
+        icon: 'user-plus',
+        text: 'Benefit',
+        link: '/approval/benefit'
+    },
+    approval_personal: {
+        icon: 'user',
+        text: 'Personal',
+        submenu: [
+            {
+                text: 'Biodata',
+                link: '/approval/personal/biodata'
+            },
+            {
+                text: 'Address',
+                link: '/approval/personal/address'
+            },
+            {
+                text: 'Family',
+                link: '/approval/personal/family'
+            }
+        ]
+    },
+    approval_checkin_out: {
+        icon: 'clock',
+        text: 'CheckIn/Out',
+        link: '/approval/checkin-out'
+    },
+    approval_history_absence: {
+        icon: 'user-clock',
+        text: 'Absence',
+        link: '/approval/history/absence'
+    },
+    approval_history_benefit: {
+        icon: 'user-plus',
+        text: 'Benefit',
+        link: '/approval/history/benefit'
+    },
+    approval_history_personal: {
+        icon: 'user',
+        text: 'Personal',
+        submenu: [
+            {
+                text: 'Biodata',
+                link: '/approval/history/personal/biodata'
+            },
+            {
+                text: 'Address',
+                link: '/approval/history/personal/address'
+            },
+            {
+                text: 'Family',
+                link: '/approval/history/personal/family'
+            }
+        ]
+    },
+    approval_history_checkin_out: {
+        icon: 'clock',
+        text: 'CheckIn/Out',
+        link: '/approval/history/checkin-out'
+    },
+    settings: {
+        icon: 'cogs',
+        text: 'Settings',
+        link: '/setting'
     },
 };

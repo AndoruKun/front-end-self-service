@@ -11,15 +11,19 @@ export class LoginComponent implements OnInit {
     @ViewChild('email') user_email:ElementRef;
     @ViewChild('password') user_password:ElementRef;
     @ViewChild('remember_me') remember_me:ElementRef;
+    modelEmail:any
+    modelPassword:any
+    modelRememberMe:any
+    err_msg:any
 
     constructor(
-        public methodService:MethodServices,
-        private user_name:ElementRef) {}
+        public methodService:MethodServices) {
+        this.user_email = this.modelEmail
+        this.user_password = this.modelPassword
+        this.remember_me = this.modelRememberMe
+    }
 
-    modelEmail:string = ""
-    modelPassword:string = ""
-    modelRememberMe:boolean = false
-    err_msg:string = ""
+
 
     ngOnInit() {
         if (localStorage.getItem("email") !== null) {
