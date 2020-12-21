@@ -1,0 +1,40 @@
+sb-dashboard-head(title='Absence', [hideBreadcrumbs]='false')
+div.row
+    div.col-12.col-md-6.mb-2
+        label(for="typeAbsence") Absence Type
+        select.form-control#typeAbsence((change)="changeEvent($event,'typeAbsence')", [value]="modelContentType")
+            option([value]="'sakit'") Sakit
+            option([value]="'izin'") Izin
+    div.col-12.col-md-6.mb-2
+        label(for="type") Type
+        select.form-control#type()
+            option((change)="changeEvent($event, 'type')", *ngFor="let type of dataAbsence", [value]="type.id") {{type.name}}
+    div.col-12.col-md-6.mb-2
+        label(for="startDate") Start Date
+        div.input-group
+            input#startDate.form-control(ngbDatepicker, #fromdate="ngbDatepicker", [(ngModel)]="fromDate", (input)="fromDate = validateInput(fromDate, fromdate.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event,'fromDate')", [startDate]="formDate!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="fromdate.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6.mb-2
+        label(for="toDate") To Date
+        div.input-group
+            input#toDate.form-control(ngbDatepicker, #todate="ngbDatepicker", [(ngModel)]="toDate", (input)="toDate = validateInput(toDate, todate.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event, 'toDate')", [startDate]="toDate!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="todate.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.mb-2
+        h4 Total Absence Days :
+    div.col-12.col-md-6.mb-2
+        label(for="substitute") Substitute
+        input#substitute.form-control(type="text", placeholder="Enter name of Substitute employee", (change)="changeEvent($event, 'substitute')")
+    div.col-12.col-md-6.mb-2
+        label(for="remark") Remark
+        input#remark.form-control(type="text", placeholder="Enter Remark", (change)="changeEvent($event, 'remark')")
+    div.form-group.col-12
+        label(for="attachDoc") Attach Document
+        input.form-control-file#attachDoc(type="file", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
+    div.col-12.mb-2
+        button.btn.btn-primary.w-100(type="button", (click)="submitProc()", [disabled]="disabledBtn") Submit
+    ng-http-loader(spinner="sk-three-bounce")
+

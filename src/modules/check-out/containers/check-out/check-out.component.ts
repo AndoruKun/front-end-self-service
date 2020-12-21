@@ -46,16 +46,24 @@ export class CheckOutComponent implements OnInit {
         this.modelOutOffice = false
     }
 
-    changeEvent(event:any, required?:any){
-        if(typeof required == "undefined")
-            this.modelOutOffice = event.target.checked
-        else if (event.target.value != "") {
-            this.disabledBtn = false
-            this.modelRemark = event.target.value
+    changeEvent(event:any, eventType:any, required?:any){
+        switch (eventType) {
+            case "outOffice":
+                this.modelOutOffice = event.target.checked
+                break
+            case "purpose":
+                this.modelPurpose = event.target.value
+                break
+            case "remark":
+                this.disabledBtn = false
+                this.modelRemark = event.target.value
+                break
         }
     }
 
     submitProc() {
+        if (typeof this.modelPurpose == "undefined")
+            this.modelPurpose = null
         let dataObj = {
             "type": "CHECKOUT",
             "actual_lat": this.dataLocation.lat.toString(),
@@ -69,11 +77,10 @@ export class CheckOutComponent implements OnInit {
             localStorage.getItem('Token'),
             '/api/v1/attempdaily',
             (result:any)=>{
-                console.log(result)
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.message +" "+result.requestNo)
+                    this.methodServices.sweetAlert('success', result.requestNo, result.message)
             })
     }
 }

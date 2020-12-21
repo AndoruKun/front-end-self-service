@@ -23,7 +23,8 @@ import {
     faUserPlus,
     faSignOutAlt,
     faSignInAlt,
-    faClock
+    faClock,
+    faCalendar
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -49,5 +50,6 @@ export const fontAwesomeSolidIcons = {
     faUserPlus,
     faSignOutAlt,
     faSignInAlt,
-    faClock
+    faClock,
+    faCalendar
 };

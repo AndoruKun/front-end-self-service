@@ -7,6 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 /* Modules */
 import { AppCommonModule } from '@common/app-common.module';
 import { NavigationModule } from '@modules/navigation/navigation.module';
+import { NgHttpLoaderModule } from 'ng-http-loader'
 
 /* Components */
 import * as selfServiceComponents from './components';
@@ -20,6 +21,8 @@ import * as selfServiceGuards from './guards';
 /* Services */
 import * as selfServiceServices from './services';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
     imports: [
         CommonModule,
@@ -28,6 +31,8 @@ import * as selfServiceServices from './services';
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        NgbModule,
+        NgHttpLoaderModule.forRoot(),
     ],
     providers: [...selfServiceServices.services, ...selfServiceGuards.guards],
     declarations: [...selfServiceContainers.containers, ...selfServiceComponents.components],

@@ -3,16 +3,16 @@
     <div [ngClass]='"row pt-3"'>
         <div [ngClass]='"col-4 text-center"'><span [ngClass]='""'>In the office</span></div>
         <div [ngClass]='"col-4 text-center"'>
-            <div [ngClass]='"custom-control custom-switch"'><input [ngClass]='"custom-control-input"' type="checkbox" id="outOffice" [checked]="modelOutOffice" (change)="changeEvent($event)" /><label [ngClass]='"custom-control-label"' for="outOffice"></label></div>
+            <div [ngClass]='"custom-control custom-switch"'><input [ngClass]='"custom-control-input"' type="checkbox" id="outOffice" [checked]="modelOutOffice" (change)="changeEvent($event,'outOffice')" /><label [ngClass]='"custom-control-label"' for="outOffice"></label></div>
         </div>
         <div [ngClass]='"col-4 text-center"'><span [ngClass]='""'>Out of office</span></div>
         <div [ngClass]='"col-12"' *ngIf="modelOutOffice">
             <label for='"purpose"'>Purpose</label
-            ><select [ngClass]='"custom-select"' id="modelPurpose">
+            ><select [ngClass]='"custom-select"' id="purpose" [value]="modelPurpose" (change)="changeEvent($event, 'purpose')">
                 <option *ngFor="let purpose of purposes" [value]="purpose">{{purpose}}</option>
             </select>
         </div>
-        <div [ngClass]='"col-12"'><label for="remark">Remark</label><input [ngClass]='"form-control"' id="remark" type="text" required (change)='changeEvent($event, "required")' /></div>
+        <div [ngClass]='"col-12"'><label for="remark">Remark</label><input [ngClass]='"form-control"' id="remark" type="text" required (change)='changeEvent($event, "remark" ,"required")' /></div>
         <div [ngClass]='"col-12 mt-3"'><button [ngClass]='"btn btn-primary w-100"' type="button" [disabled]="disabledBtn" (click)="submitProc()">Submit</button></div>
     </div></sb-layout-check-in
 >

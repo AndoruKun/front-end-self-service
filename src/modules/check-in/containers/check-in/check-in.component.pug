@@ -7,16 +7,16 @@ sb-layout-check-in
             span([ngClass]='""') In the office
         div([ngClass]='"col-4 text-center"')
             div([ngClass]='"custom-control custom-switch"')
-                input([ngClass]='"custom-control-input"', type="checkbox", id="outOffice", [checked]="modelOutOffice", (change)="changeEvent($event)")
+                input([ngClass]='"custom-control-input"', type="checkbox", id="outOffice", [checked]="modelOutOffice", (change)="changeEvent($event,'outOffice')")
                 label([ngClass]='"custom-control-label"', for="outOffice")
         div([ngClass]='"col-4 text-center"')
             span([ngClass]='""') Out of office
         div([ngClass]='"col-12"', *ngIf="modelOutOffice")
             label(for='"purpose"') Purpose
-            select([ngClass]='"custom-select"', id="purpose" [value]="modelPurpose")
+            select([ngClass]='"custom-select"', id="purpose", [value]="modelPurpose", (change)="changeEvent($event, 'purpose')")
                 option(*ngFor="let purpose of purposes", [value]='purpose') {{purpose}}
         div([ngClass]='"col-12"')
             label(for='remark') Remark
-            input([ngClass]='"form-control"', id='remark', type="text", required, (change)='changeEvent($event, "required")')
+            input([ngClass]='"form-control"', id='remark', type="text", required, (change)='changeEvent($event, "remark" ,"required")')
         div([ngClass]='"col-12 mt-3"')
             button([ngClass]='"btn btn-primary w-100"', type="button", [disabled]="disabledBtn", (click)="submitProc()") Submit

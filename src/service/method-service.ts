@@ -160,8 +160,7 @@ export class MethodServices {
                     "Content-Type": "application/json"
                 }
             }
-        ).subscribe(hasil => {-+
-                console.log(hasil)
+        ).subscribe(hasil => {
                 callback(hasil)
             }
             , err => {
@@ -169,7 +168,7 @@ export class MethodServices {
             }
         )
     }
-    sweetAlert(type:any,msg:any) {
+    sweetAlert(type:any,msg:any,title?:any) {
         switch(type) {
             case "error":
                 // @ts-ignore
@@ -187,7 +186,7 @@ export class MethodServices {
             case "success":
                 // @ts-ignore
                 swal.fire({
-                    title: 'Success',
+                    title: typeof title == "undefined" ? "Success" : title,
                     text: msg,
                     icon: 'success',
                     buttonsStyling: false,

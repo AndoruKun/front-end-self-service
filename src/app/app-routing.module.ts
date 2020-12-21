@@ -45,6 +45,11 @@ const routes: Routes = [
             import('modules/check-out/check-out-routing.module').then(m => m.CheckOutRoutingModule),
     },
     {
+        path: 'self-service',
+        loadChildren: () =>
+            import('modules/self-service/self-service-routing.module').then(m => m.SelfServiceRoutingModule)
+    },
+    {
         path: 'version',
         loadChildren: () =>
             import('modules/utility/utility-routing.module').then(m => m.UtilityRoutingModule),
