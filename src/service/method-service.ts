@@ -156,8 +156,7 @@ export class MethodServices {
             , dataBody
             ,{
                 headers: {
-                    Authorization: token,
-                    "Content-Type": "application/json"
+                    Authorization: token
                 }
             }
         ).subscribe(hasil => {

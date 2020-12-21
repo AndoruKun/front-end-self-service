@@ -11,6 +11,7 @@ import { MethodServices } from '../../../../service/method-service';
 })
 export class AbsenceComponent implements OnInit {
     @ViewChild("fileUpload", {static: false}) fileUpload:ElementRef | undefined;files:any;
+    @ViewChild("absenceType") absenceType:ElementRef | undefined
     hoveredDate: NgbDate | null = null;
     faCalendar = faCalendar;
 
@@ -100,6 +101,7 @@ export class AbsenceComponent implements OnInit {
         let toDateConvert:any = new Date(toDateString)
         let diffTime = Math.abs(toDateConvert - fromDateConvert);
         let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        let absenceType = typeof this.absenceType == "undefined" ? null : Number(this.absenceType.nativeElement.value)
 
         let dataBody = {
             "amount": diffDays+1,
@@ -107,7 +109,7 @@ export class AbsenceComponent implements OnInit {
             "endDate": toDateString.toString(),
             "remark": this.modelRemark,
             "type": this.modelContentType,
-            "absenceType": this.modelType
+            "absenceTypeId": absenceType
         }
 
 
