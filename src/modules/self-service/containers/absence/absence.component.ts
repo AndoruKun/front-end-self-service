@@ -24,6 +24,7 @@ export class AbsenceComponent implements OnInit {
     params:any
     dataAbsence:any
     modelContentType:any;
+    modelTotalAbsence:any = 0;
 
     constructor(private calendar: NgbCalendar, public formatter: NgbDateParserFormatter, private methodServices:MethodServices) {}
 
@@ -43,6 +44,7 @@ export class AbsenceComponent implements OnInit {
         if (this.fromDate.after(this.toDate)) {
             this.toDate = this.fromDate
         }
+        this.calcTotalAbsence(this.fromDate, this.toDate)
     }
 
     validateInput(currentValue: NgbDate | null, input: string): NgbDate | null {
@@ -58,9 +60,6 @@ export class AbsenceComponent implements OnInit {
             case "type":
                 this.modelType = event.target.value
                 break
-            case "substitute":
-                this.modelSubstitute = event.target.value
-                break
             case "remark":
                 this.modelRemark = event.target.value
                 break
@@ -68,7 +67,7 @@ export class AbsenceComponent implements OnInit {
                 this.files = event.target.files.item(0)
                 break
         }
-        if (this.modelSubstitute != "" && this.modelRemark != "" && typeof this.modelRemark != "undefined" && typeof this.modelSubstitute != "undefined")
+        if (this.modelRemark != "" && typeof this.modelRemark != "undefined")
             this.disabledBtn = false
         else
             this.disabledBtn = true
@@ -93,18 +92,24 @@ export class AbsenceComponent implements OnInit {
         )
     }
 
-    submitProc() {
-        let formData = new FormData()
-        let fromDateString = this.fromDate.year+"-"+this.fromDate.month+"-"+this.fromDate.day
-        let toDateString = this.toDate.year+"-"+this.toDate.month+"-"+this.toDate.day
+    calcTotalAbsence(date1:any, date2:any) {
+        let fromDateString = date1.year+"-"+date1.month+"-"+date1.day
+        let toDateString = date2.year+"-"+date2.month+"-"+date2.day
         let fromDateConvert:any = new Date(fromDateString)
         let toDateConvert:any = new Date(toDateString)
         let diffTime = Math.abs(toDateConvert - fromDateConvert);
         let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        this.modelTotalAbsence = diffDays
+    }
+
+    submitProc() {
+        let formData = new FormData()
+        let fromDateString = this.fromDate.year+"-"+this.fromDate.month+"-"+this.fromDate.day
+        let toDateString = this.toDate.year+"-"+this.toDate.month+"-"+this.toDate.day
         let absenceType = typeof this.absenceType == "undefined" ? null : Number(this.absenceType.nativeElement.value)
 
         let dataBody = {
-            "amount": diffDays+1,
+            "amount": this.modelTotalAbsence+1,
             "startDate": fromDateString.toString(),
             "endDate": toDateString.toString(),
             "remark": this.modelRemark,

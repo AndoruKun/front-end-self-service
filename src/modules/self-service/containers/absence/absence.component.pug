@@ -24,11 +24,8 @@ div.row
                 button.btn.btn-outline-secondary(type="button", (click)="todate.toggle()")
                     fa-icon([icon]='["fas", "calendar-alt"]')
     div.col-12.mb-2
-        h4 Total Absence Days :
-    div.col-12.col-md-6.mb-2
-        label(for="substitute") Substitute
-        input#substitute.form-control(type="text", placeholder="Enter name of Substitute employee", (change)="changeEvent($event, 'substitute')")
-    div.col-12.col-md-6.mb-2
+        h4 Total Absence Days : {{modelTotalAbsence+1}} Days
+    div.col-12.mb-2
         label(for="remark") Remark
         input#remark.form-control(type="text", placeholder="Enter Remark", (change)="changeEvent($event, 'remark')")
     div.form-group.col-12
