@@ -9,8 +9,8 @@
     </div>
     <div class="col-12 col-md-6 mb-2">
         <label for="type">Type</label
-        ><select class="form-control" id="type" #absenceType>
-            <option (change)="changeEvent($event, 'type')" *ngFor="let type of dataAbsence" [value]="type.id">{{type.name}}</option>
+        ><select class="form-control" id="type" #absenceType (change)="changeEvent($event, 'type')">
+            <option *ngFor="let type of dataAbsence" [value]="type.id">{{type.name}}</option>
         </select>
     </div>
     <div class="col-12 col-md-6 mb-2">

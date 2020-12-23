@@ -49,15 +49,15 @@ export const sideNavItems: SideNavItems = {
         submenu: [
             {
                 text: 'Biodata',
-                link: '/self-service/pesonal/biodata'
+                link: '/self-service/personal/biodata'
             },
             {
                 text: 'Address',
-                link: '/self-service/pesonal/address'
+                link: '/self-service/personal/address'
             },
             {
                 text: 'Family',
-                link: '/self-service/pesonal/family'
+                link: '/self-service/personal/family'
             }
         ],
     },

@@ -1,2 +1,35 @@
 <sb-dashboard-head title="Benefit" [hideBreadcrumbs]="false"></sb-dashboard-head>
-<div class="row"><div class="col-12 col-md-6"></div></div>
+<div class="row">
+    <div class="col-12 col-md-6 mb-2">
+        <label for="transactionDate">Transaction Date</label>
+        <div class="input-group">
+            <input class="form-control" id="transactionDate" ngbDatepicker #date="ngbDatepicker" [(ngModel)]="transactionDate" (input)="transactionDate = validateInput(transactionDate, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="transactionDate!" tabindex="-1" />
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="date.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6 mb-2">
+        <label for="typeClaim">Type</label
+        ><select class="form-control" id="typeClaim" [value]="modelType" (change)="changeEvent($event, 'type')">
+            <option *ngFor="let type of typeClaim" [value]="type">{{type}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6 mb-2">
+        <label for="claimFor">Claim For</label
+        ><select class="form-control" id="claimFor" [value]="modelClaimFor" [disabled]="true">
+            <option *ngFor="let claim of claimFor" [value]="claim">{{claim}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6 mb-2">
+        <label for="reasons">Reason</label
+        ><select class="form-control" id="reasons" [value]="modelReason" [disabled]="disabledSelection" (change)="changeEvent($event, 'reason')">
+            <option *ngFor="let data of reason" [value]="data">{{data}}</option>
+        </select>
+    </div>
+    <div class="col-12 col-md-6 mb-2"><label for="claimAmount">Claim Amount</label><input class="form-control" id="claimAmount" placeholder="Rp. 0" type="text" (change)="changeEvent($event, 'claimAmount')" (blur)="maskCurrency($event)" (focus)="onFocus($event)" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks for the benefit claim..." type="text" (change)="changeEvent($event, 'remark')" /></div>
+    <div class="form-group col-12"><label for="attachDoc">Attach Supporting Document</label><input class="form-control-file" id="attachDoc" type="file" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
+    <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>
+    <ng-http-loader spinner="sk-three-bounce"></ng-http-loader>
+</div>

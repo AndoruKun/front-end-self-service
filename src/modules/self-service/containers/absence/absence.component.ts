@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter} from '@ng-bootstrap/ng-bootstrap';
-import { faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { MethodServices } from '../../../../service/method-service';
 
 @Component({
@@ -12,8 +11,6 @@ import { MethodServices } from '../../../../service/method-service';
 export class AbsenceComponent implements OnInit {
     @ViewChild("fileUpload", {static: false}) fileUpload:ElementRef | undefined;files:any;
     @ViewChild("absenceType") absenceType:ElementRef | undefined
-    hoveredDate: NgbDate | null = null;
-    faCalendar = faCalendar;
 
     fromDate:any | null;
     toDate:any | null;

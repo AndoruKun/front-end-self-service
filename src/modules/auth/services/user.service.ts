@@ -12,8 +12,6 @@ const userSubject: ReplaySubject<User> = new ReplaySubject(1);
 
 
 export class UserService {
-
-
     constructor(private methodService:MethodServices,
                 private http:HttpClient) {
 
@@ -24,17 +22,31 @@ export class UserService {
                     firstName: res.firstName,
                     lastName: res.lastName,
                     email: res.email,
-                    employeeNo: res.employeeNo
+                    employeeNo: res.employeeNo,
+                    birthDate: res.birthDate,
+                    familyCardNo: res.familyCardNo,
+                    lastEducation: res.lastEducation,
+                    maritialStatus: res.maritialStatus,
+                    mobilePhone: res.mobilePhone,
+                    npwpNo: res.npwpNo,
+                    ktpNo: res.ktpNo,
+                    bloodType: res.bloodType,
+                    nationality: res.nationality,
+                    bpjsNo: res.bpjsNo,
+                    religion: res.religion
                 }
             })
     }
 
     set user(user: User) {
-        console.log(user)
         userSubject.next(user);
     }
 
     get user$(): Observable<User> {
         return userSubject.asObservable();
+    }
+
+    getItems() {
+        return this.user$;
     }
 }

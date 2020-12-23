@@ -44,7 +44,7 @@ export const ROUTES: Routes = [
             {
                 path: 'benefit',
                 data: {
-                    title: 'self Serivce - Benefit',
+                    title: 'Self Serivce - Benefit',
                     breadcrumbs: [
                         {
                             text: 'Self Service',
@@ -57,6 +57,80 @@ export const ROUTES: Routes = [
                     ],
                 } as SBRouteData,
                 component: selfServiceContainers.BenefitComponent
+            },
+            {
+                path: 'personal',
+                canActivate: [],
+                children: [
+                    {
+                        path: '',
+                        pathMatch: 'full',
+                        redirectTo: 'personal'
+                    },
+                    {
+                        path: 'biodata',
+                        data: {
+                            title: 'Self Service Personal - Biodata',
+                            breadcrumbs: [
+                                {
+                                    text: 'Self Service',
+                                    link: '/self-service',
+                                },
+                                {
+                                    text: 'Personal',
+                                    link: '/personal'
+                                },
+                                {
+                                    text: 'Biodata',
+                                    active: true
+                                }
+                            ],
+                        } as SBRouteData,
+                        component: selfServiceContainers.PersonalBiodataComponent
+                    },
+                    {
+                        path: 'address',
+                        data: {
+                            title: 'Self Service Personal - Address',
+                            breadcrumbs: [
+                                {
+                                    text: 'Self Service',
+                                    link: '/self-service',
+                                },
+                                {
+                                    text: 'Personal',
+                                    link: '/personal'
+                                },
+                                {
+                                    text: 'Address',
+                                    active: true
+                                }
+                            ],
+                        } as SBRouteData,
+                        component: selfServiceContainers.PersonalAddressComponent
+                    },
+                    {
+                        path: 'family',
+                        data: {
+                            title: 'Self Service Personal - Family',
+                            breadcrumbs: [
+                                {
+                                    text: 'Self Service',
+                                    link: '/self-service',
+                                },
+                                {
+                                    text: 'Personal',
+                                    link: '/personal'
+                                },
+                                {
+                                    text: 'Family',
+                                    active: true
+                                }
+                            ],
+                        } as SBRouteData,
+                        component: selfServiceContainers.PersonalFamilyComponent
+                    }
+                ]
             }
         ]
     },

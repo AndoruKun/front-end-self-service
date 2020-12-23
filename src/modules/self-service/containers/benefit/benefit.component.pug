@@ -1,3 +1,34 @@
 sb-dashboard-head(title='Benefit', [hideBreadcrumbs]='false')
 div.row
-    div.col-12.col-md-6
+    div.col-12.col-md-6.mb-2
+        label(for="transactionDate") Transaction Date
+        div.input-group
+            input#transactionDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="transactionDate", (input)="transactionDate = validateInput(transactionDate, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="transactionDate!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="date.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6.mb-2
+        label(for="typeClaim") Type
+        select#typeClaim.form-control([value]="modelType", (change)="changeEvent($event, 'type')")
+            option(*ngFor="let type of typeClaim", [value]='type') {{type}}
+    div.col-12.col-md-6.mb-2
+        label(for="claimFor") Claim For
+        select#claimFor.form-control([value]="modelClaimFor", [disabled]="true")
+            option(*ngFor="let claim of claimFor", [value]='claim') {{claim}}
+    div.col-12.col-md-6.mb-2
+        label(for="reasons") Reason
+        select#reasons.form-control([value]="modelReason", [disabled]="disabledSelection", (change)="changeEvent($event, 'reason')")
+            option(*ngFor="let data of reason", [value]='data') {{data}}
+    div.col-12.col-md-6.mb-2
+        label(for="claimAmount") Claim Amount
+        input.form-control#claimAmount(placeholder="Rp. 0", type="text", (change)="changeEvent($event, 'claimAmount')",
+            (blur)="maskCurrency($event)", (focus)="onFocus($event)")
+    div.col-12.col-md-6.mb-2
+        label(for="remark") Remark
+        input.form-control#remark(placeholder="Type remarks for the benefit claim...", type="text", (change)="changeEvent($event, 'remark')")
+    div.form-group.col-12
+        label(for="attachDoc") Attach Supporting Document
+        input.form-control-file#attachDoc(type="file", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
+    div.col-12.mb-2
+        button.btn.btn-primary.w-100(type="button", (click)="submitProc()", [disabled]="disabledBtn") Submit
+    ng-http-loader(spinner="sk-three-bounce")

@@ -1,0 +1,71 @@
+sb-dashboard-head(title='Personal - Biodata', [hideBreadcrumbs]='false')
+div.d-flex.row
+    div.col-12
+        ul.row.nav-pills(ngbNav, #nav="ngbNav", [(activeId)]="active", orientation="horizontal")
+            li.col-6.text-center(ngbNavItem="currentValue")
+                a(ngbNavLink) Current Value
+                ng-template(ngbNavContent)
+                    ul.list-group.list-group-flush(*ngIf='userService.user$ | async as user')
+                        li.list-group-item
+                            h5.card-title Marital Status
+                            span.card-text {{user.maritialStatus}}
+                        li.list-group-item
+                            h5.card-title Birth Date
+                            span.card-text {{user.birthDate}}
+                        li.list-group-item
+                            h5.card-title No. NPWP
+                            span.card-text {{user.npwpNo}}
+                        li.list-group-item
+                            h5.card-title No. KK
+                            span.card-text {{user.familyCardNo}}
+                        li.list-group-item
+                            h5.card-title Personal Email
+                            span.card-text {{user.email}}
+                        li.list-group-item
+                            h5.card-title Last Education
+                            span.card-text {{user.lastEducation}}
+                        li.list-group-item
+                            h5.card-title Mobile Phone
+                            span.card-text {{user.mobilePhone}}
+            li.col-6.text-center(ngbNavItem="proposedValue")
+                a(ngbNavLink) Proposed Value
+                ng-template(ngbNavContent)
+                    div.row
+                        div.col-12.col-md-6.mb-2
+                            label(for="maritalStatus") Marital Status
+                            select#maritalStatus.form-control([value]="user.maritialStatus", (change)="changeEvent($event, 'maritalStatus')")
+                                option(*ngFor="let status of maritalStatus", [value]='status') {{status}}
+                        div.col-12.col-md-6.mb-2
+                            label(for="birthDate") Birth Date
+                            div.input-group
+                                input#birthDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="birthDate", (input)="birthDate = validateInput(birthDate, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="birthDate!", tabindex="-1")
+                                div.input-group-append
+                                    button.btn.btn-outline-secondary(type="button", (click)="date.toggle()")
+                                        fa-icon([icon]='["fas", "calendar-alt"]')
+                        div.col-12.col-md-6.mb-2
+                            label(for="npwp") No. NPWP
+                            input.form-control#npwp(type="text", [value]="user.npwpNo", (change)="changeEvent($event, 'npwp')")
+                        div.col-12.col-md-6.mb-2
+                            label(for="kk") No. KK
+                            input.form-control#kk(type="text", [value]="user.familyCardNo", (change)="changeEvent($event, 'kk')")
+                        div.col-12.col-md-6.mb-2
+                            label(for="email") Personal Email
+                            input.form-control#email(type="text", [disabled]="true", [value]="user.email", (change)="changeEvent($event, 'email')")
+                        div.col-12.col-md-6.mb-2
+                            label(for="lastEducation") Marital Status
+                            select#lastEducation.form-control([value]="user.lastEducation", (change)="changeEvent($event, 'lastEducation')")
+                                option(*ngFor="let edu of education", [value]='edu') {{edu}}
+                        div.col-12.col-md-6.mb-2
+                            label(for="phone") Mobile Phone
+                            input.form-control#phone(type="text", [value]="user.mobilePhone", (change)="changeEvent($event, 'phone')")
+                        div.col-12.col-md-6.mb-2
+                            label(for="remark") Remark
+                            input.form-control#remark(placeholder="Type remarks for the benefit claim...", type="text", (change)="changeEvent($event, 'remark')")
+                        div.form-group.col-12
+                            label(for="attachDoc") Attach Document
+                            input.form-control-file#attachDoc(type="file", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
+                        div.col-12.mb-2
+                            button.btn.btn-primary.w-100(type="button", (click)="submitProc()", [disabled]="disabledBtn") Submit
+    div.col-12.mt-2([ngbNavOutlet]="nav")
+    ng-http-loader(spinner="sk-three-bounce")
+
