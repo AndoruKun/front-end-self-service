@@ -21,8 +21,8 @@ li.nav-item.dropdown.dropdown-user.no-caret(
                 .dropdown-user-details-name {{ user.firstName }} {{ user.lastName }}
                 .dropdown-user-details-email {{ user.email }}
         .dropdown-divider
-        a.dropdown-item(routerLink='/profile')
-            | Profile
+        a.dropdown-item(routerLink='/settings')
+            | Settings
         .dropdown-divider
         a.dropdown-item((click)="logout()")
             | Logout

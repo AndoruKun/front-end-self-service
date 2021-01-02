@@ -9,18 +9,19 @@ import { Router } from '@angular/router';
     templateUrl: './top-nav-user.component.html',
     styleUrls: ['top-nav-user.component.scss'],
 })
+
 export class TopNavUserComponent implements OnInit {
+
+
     constructor(public userService: UserService,
                 private methodServices:MethodServices,
                 private router:Router) {}
     ngOnInit() {}
 
     logout() {
-        if(typeof(Storage) !== 'undefined'){
-            if(localStorage.getItem("Token") !== null)
-            {
-                localStorage.removeItem("Token")
-            }
+        if (typeof (Storage) !== 'undefined' && localStorage.getItem('Token') !== null) {
+            localStorage.removeItem('Token');
+            this.methodServices.userAuthorities = [];
         }
         this.router.navigate(["/auth/login"]);
     }

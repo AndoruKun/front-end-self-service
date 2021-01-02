@@ -1,0 +1,38 @@
+<sb-layout-timesheet
+    ><sb-dashboard-head title="Timesheet" [hideBreadcrumbs]="true"></sb-dashboard-head>
+    <div class="row">
+        <div class="col-12 text-center mb-3"><ngb-datepicker class="custom-monthyear-only w-100" #dp [(ngModel)]="modelToday" (navigate)="modelToday = $event.next"></ngb-datepicker></div>
+        <div class="col-12 text-center mb-3"><button class="btn btn-primary w-100" (click)="showTimesheet()">Show</button></div>
+        <div class="col-12" *ngFor="let data of attendent">
+            <h5 class="pl-1">{{data.date}}</h5>
+            <div class="bg-success" *ngIf="data.status == 'APPROVED'">
+                <div class="row p-3 text-white font-weight-bold">
+                    <div class="col-6 text-center"><span>Check In</span></div>
+                    <div class="col-6 text-center"><span>Check Out</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkInTime}}</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkOutTime}}</span></div>
+                    <div class="col-12 pl-3 mt-2"><span>Remark : {{data.remark}}</span></div>
+                </div>
+            </div>
+            <div class="bg-danger" *ngIf="data.status == 'REJECTED'">
+                <div class="row p-3 text-white font-weight-bold">
+                    <div class="col-6 text-center"><span>Check In</span></div>
+                    <div class="col-6 text-center"><span>Check Out</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkInTime}}</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkOutTime}}</span></div>
+                    <div class="col-12 pl-3 mt-2"><span>Remark : {{data.remark}}</span></div>
+                </div>
+            </div>
+            <div class="bg-danger" *ngIf="data.status == 'OFF'">
+                <div class="row p-3 text-white font-weight-bold">
+                    <div class="col-6 text-center"><span>Check In</span></div>
+                    <div class="col-6 text-center"><span>Check Out</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkInTime}}</span></div>
+                    <div class="col-6 text-center"><span>{{data.checkOutTime}}</span></div>
+                    <div class="col-12 pl-3 mt-2"><span>Remark : {{data.remark}}</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-http-loader spinner="sk-three-bounce"></ng-http-loader
+></sb-layout-timesheet>

@@ -50,7 +50,7 @@
                         <div class="col-12 col-md-6 mb-2">
                             <label for="birthDate">Birth Date</label>
                             <div class="input-group">
-                                <input class="form-control" id="birthDate" ngbDatepicker #date="ngbDatepicker" [(ngModel)]="birthDate" (input)="birthDate = validateInput(birthDate, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="birthDate!" tabindex="-1" />
+                                <input class="form-control" id="birthDate" ngbDatepicker #date="ngbDatepicker" [(ngModel)]="birthDate" (input)="birthDate = validateInput(birthDate, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="birthDate!" tabindex="-1" [minDate]="{year: 1980, month: 1, day: 1}" />
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-secondary" type="button" (click)="date.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
                                 </div>

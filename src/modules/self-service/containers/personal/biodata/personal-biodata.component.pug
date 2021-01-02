@@ -38,7 +38,7 @@ div.d-flex.row
                         div.col-12.col-md-6.mb-2
                             label(for="birthDate") Birth Date
                             div.input-group
-                                input#birthDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="birthDate", (input)="birthDate = validateInput(birthDate, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="birthDate!", tabindex="-1")
+                                input#birthDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="birthDate", (input)="birthDate = validateInput(birthDate, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="birthDate!", tabindex="-1", [minDate]="{year: 1980, month: 1, day: 1}")
                                 div.input-group-append
                                     button.btn.btn-outline-secondary(type="button", (click)="date.toggle()")
                                         fa-icon([icon]='["fas", "calendar-alt"]')

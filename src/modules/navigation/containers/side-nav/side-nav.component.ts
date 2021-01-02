@@ -21,10 +21,20 @@ export class SideNavComponent implements OnInit, OnDestroy {
     subscription: Subscription = new Subscription();
     routeDataSubscription!: Subscription;
     userData:any;
+    canAccessPermission:any;
 
-    constructor(public navigationService: NavigationService, public userService: UserService) {}
+    constructor(
+        public navigationService: NavigationService,
+        public userService: UserService,
+        private methodServices:MethodServices) {}
 
     ngOnInit() {
+        if (this.methodServices.userAuthorities.length == 0)
+            this.methodServices.decodeJWT(localStorage.getItem('Token'))
+
+        this.canAccessPermission = (accessPermission:any) => this.methodServices.checkAccessAuthorization(accessPermission)
+        console.log("=== [User Access] ===")
+        console.log(this.methodServices.userAuthorities)
     }
 
     ngOnDestroy() {

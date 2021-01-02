@@ -18,10 +18,12 @@ export interface SideNavItem {
     icon?: string;
     text: string;
     link?: string;
+    authorization?: string;
     submenu?: SideNavItem[];
 }
 
 export interface SideNavSection {
     text?: string;
+    authorization?: string;
     items: string[];
 }

@@ -110,6 +110,48 @@ export const ROUTES: Routes = [
                         component: selfServiceContainers.PersonalAddressComponent
                     },
                     {
+                        path: 'address-form',
+                        data: {
+                            title: 'Self Service Personal - Address Form',
+                            breadcrumbs: [
+                                {
+                                    text: 'Self Service',
+                                    link: '/self-service',
+                                },
+                                {
+                                    text: 'Personal',
+                                    link: '/personal'
+                                },
+                                {
+                                    text: 'Address Form',
+                                    active: true
+                                }
+                            ],
+                        } as SBRouteData,
+                        component: selfServiceContainers.AddressFormComponent
+                    },
+                    {
+                        path: 'family-form',
+                        data: {
+                            title: 'Self Service Personal - Address Form',
+                            breadcrumbs: [
+                                {
+                                    text: 'Self Service',
+                                    link: '/self-service',
+                                },
+                                {
+                                    text: 'Personal',
+                                    link: '/personal'
+                                },
+                                {
+                                    text: 'Family Form',
+                                    active: true
+                                }
+                            ],
+                        } as SBRouteData,
+                        component: selfServiceContainers.FamilyFormComponent
+                    },
+                    {
                         path: 'family',
                         data: {
                             title: 'Self Service Personal - Family',

@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit {
 
 
     ngOnInit() {
-        if (localStorage.getItem("email") !== null) {
-            let email = localStorage.getItem("email")
+        if (localStorage.getItem("username") !== null) {
+            let email = localStorage.getItem("username")
             this.modelEmail = email? email : ""
         }
         if (localStorage.getItem("password") !== null) {
@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     login() {
         this.modelEmail = this.user_email.nativeElement.value
         this.modelPassword = this.user_password.nativeElement.value
-        this.modelRememberMe = this.remember_me.nativeElement.value
+        this.modelRememberMe = this.remember_me.nativeElement.checked
 
         this.methodService.processToken(
             this.modelRememberMe,

@@ -101,8 +101,8 @@ export class AbsenceComponent implements OnInit {
 
     submitProc() {
         let formData = new FormData()
-        let fromDateString = this.fromDate.year+"-"+this.fromDate.month+"-"+this.fromDate.day
-        let toDateString = this.toDate.year+"-"+this.toDate.month+"-"+this.toDate.day
+        let fromDateString = this.methodServices.recorrectConvertDate(this.fromDate)
+        let toDateString = this.methodServices.recorrectConvertDate(this.toDate)
         let absenceType = typeof this.absenceType == "undefined" ? null : Number(this.absenceType.nativeElement.value)
 
         let dataBody = {
@@ -125,7 +125,11 @@ export class AbsenceComponent implements OnInit {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.message)
+                    this.methodServices.sweetAlert('success', result.message, "Success", (result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
             })
     }
 }

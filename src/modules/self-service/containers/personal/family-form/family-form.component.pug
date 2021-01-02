@@ -1,0 +1,79 @@
+sb-dashboard-head(title="Form", [hideBreadcrumbs]=false)
+div.row
+    div.col-12.col-md-6.mb-2
+        label(for="familyName") Family Name
+        input.form-control#familyName(type="text", placeholder="Enter Family Name", (change)="changeEvent($event, 'familyName')", [value]="modelFamilyName")
+    div.col-12.col-md-6.mb-2
+        label(for="familyGender") Gender
+        select#familyGender.form-control((change)="changeEvent($event, 'familyGender')", [value]="modelGender")
+            option(*ngFor="let gender of familyGender", [value]='gender') {{gender}}
+    div.col-12.col-md-6.mb-2
+        label(for="familyRelationship") Family Relationship
+        select#familyRelationship.form-control((change)="changeEvent($event, 'familyRelationship')", [value]="modelRelationship")
+            option(*ngFor="let relationship of familyRelationship", [value]='relationship') {{relationship}}
+    div.col-12.col-md-6.mb-2
+        label(for="familyBirth") Family Birth Place
+        input.form-control#familyBirth(type="text", placeholder="Enter Place of Birth", (change)="changeEvent($event, 'familyBirth')", [value]="modelBirthPlace")
+    div.col-12.col-md-6.mb-2
+        label(for="birthDate") Family Birth of Date
+        div.input-group
+            input#birthDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="modelDateBirth", (input)="modelDateBirth = validateInput(modelDateBirth, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="modelDateBirth!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="date.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6.mb-2
+        label(for="nationality") Nationality
+        select#nationality.form-control((change)="changeEvent($event, 'nationality')", [value]="modelNationality")
+            option(*ngFor="let nationality of nationalitys", [value]='nationality') {{nationality}}
+    div.col-12.col-md-6.mb-2
+        label(for="bloodType") Family Blood Type
+        select#bloodType.form-control((change)="changeEvent($event, 'bloodType')", [value]="modelBloodType")
+            option(*ngFor="let bloodType of bloodTypes", [value]='bloodType') {{bloodType}}
+    div.col-12.col-md-6.mb-2
+        label(for="aliveStatus") Alive Status
+        select#aliveStatus.form-control((change)="changeEvent($event, 'aliveStatus')", [value]="modelAliveStatus")
+            option(*ngFor="let status of aliveStatus", [value]='status') {{status}}
+    div.col-12.col-md-6.mb-2
+        label(for="occupation") Family Occupation
+        input.form-control#occupation(type="text", placeholder="Occupation", (change)="changeEvent($event, 'occupation')", [value]="modelOccupation")
+    div.col-12.col-md-6.mb-2
+        label(for="maritalStatus") Marital Status
+        select#maritalStatus.form-control((change)="changeEvent($event, 'maritalStatus')", [value]="modelMaritalStatus")
+            option(*ngFor="let status of maritalStatus", [value]='status') {{status}}
+    div.col-12.col-md-6.mb-2
+        label(for="kk") No. KK
+        input.form-control#kk(type="text", (change)="changeEvent($event, 'kk')", [value]="modelKK")
+    div.col-12.col-md-6.mb-2
+        label(for="nik") No. NIK
+        input.form-control#nik(type="text", (change)="changeEvent($event, 'nik')", [value]="modelNik")
+    div.col-12.col-md-6.mb-2
+        label(for="address") Address
+        textarea.form-control#address(placeholder="Enter address detail", (change)="changeEvent($event, 'address')", [value]="modelAddress")
+    div.col-12.col-md-6.mb-2
+        label(for="marriedDate") Married Date
+        div.input-group
+            input#marriedDate.form-control(ngbDatepicker, #date="ngbDatepicker", [(ngModel)]="modelMarriedDate", (input)="modelMarriedDate = validateInput(modelMarriedDate, date.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event)", [startDate]="modelMarriedDate!", tabindex="-1", [minDate]="{year: 1980, month: 1, day: 1}")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="date.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6.mb-2
+        label(for="city") City
+        input.form-control#city(type="text", placeholder="Enter City", (change)="changeEvent($event, 'city')", [value]="modelCity")
+    div.col-12.col-md-6.mb-2
+        label(for="zipCode") ZIP Code
+        input.form-control#zipCode(type="text", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [value]="modelZipcode")
+    div.col-12.col-md-6.mb-2
+        label(for="phone") Phone
+        input.form-control#phone(type="text", placeholder="e.g. 02145XXX", (change)="changeEvent($event, 'phone')", [value]="modelPhone")
+    div.col-12.col-md-6.mb-2
+        label(for="email") Email
+        input.form-control#email(type="text", placeholder="Enter Email", (change)="changeEvent($event, 'email')", [value]="modelEmail")
+    div.col-12.col-md-6.mb-2
+        label(for="remark") Remark
+        input.form-control#remark(placeholder="Type remarks", type="text", (change)="changeEvent($event, 'remark')")
+    div.form-group.col-12.mb-2
+        label(for="attachDoc") Attach Document
+        input.form-control-file#attachDoc(type="file", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
+    div.col-12.mb-2
+        button.btn.btn-primary.w-100(type="button", (click)="submitProc()", [disabled]="disabledBtn") Submit
+    ng-http-loader(spinner="sk-three-bounce")

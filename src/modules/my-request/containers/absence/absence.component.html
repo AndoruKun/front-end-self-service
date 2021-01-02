@@ -1,0 +1,35 @@
+<sb-dashboard-head title="My Request" [hideBreadcrumbs]="false"></sb-dashboard-head
+><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+    ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAbsence; let i = index"
+        ><ng-template ngbPanelHeader
+            ><div class="d-flex align-items-center justify-content-between">
+                <button class="btn btn-link p-0" ngbPanelToggle>{{request.requestNo}}</button>
+                <h5 class="m-0">{{request.requestDatetime | date: "dd MMM yyyy hh:mm"}}</h5>
+            </div></ng-template
+        ><ng-template ngbPanelContent
+            ><div class="row">
+                <div class="col-12"><span [ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}">{{request.status}}</span></div>
+                <div class="col-6 line justify-content-center align-content-center">
+                    <div>{{request.type}} {{request.amount}} Days</div>
+                    <div>Request Date :</div>
+                    <div>{{request.startDate | date: "dd MMM yyyy"}} - {{request.endDate | date: "dd MMM yyyy"}}</div>
+                    <div>Remark :</div>
+                    <div>{{request.remark == null ? '-' : request.remark}}</div>
+                    <div>Approved By :</div>
+                    <div>{{request.managerName == null ? '-' : request.managerName}}</div>
+                </div>
+                <div class="col-6 text-right">
+                    <div>Approve Date :</div>
+                    <div>{{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}</div>
+                </div>
+                <div class="col-12 mt-2">
+                    <button class="btn btn-primary btn-labebed w-100" (click)="downloadFile(request.attachment)">
+                        <span class="pr-2"><fa-icon [icon]='["fas", "cloud-download-alt"]'></fa-icon></span><span>Download</span></button
+                    ><button class="mt-2 btn btn-danger btn-labebed w-100" *ngIf="request.status == 'PENDING'" (click)="cancelRequest(request.requestNo)">
+                        <span class="pr-2"><fa-icon [icon]='["fas", "times"]'></fa-icon></span><span>Cancel</span>
+                    </button>
+                </div>
+            </div></ng-template
+        ></ngb-panel
+    ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader
+></ngb-accordion>

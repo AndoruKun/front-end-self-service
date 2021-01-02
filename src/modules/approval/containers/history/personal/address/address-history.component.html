@@ -1,0 +1,103 @@
+<sb-dashboard-head title="Approval History" [hideBreadcrumbs]="false"></sb-dashboard-head
+><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+    ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAddress; let i = index"
+        ><ng-template ngbPanelHeader
+            ><div class="d-flex align-items-center justify-content-between">
+                <button class="btn btn-link p-0" ngbPanelToggle>{{request.requestNo}}</button>
+                <h5 class="m-0">{{request.requestDateTime | date: "dd MMM yyyy hh:mm"}}</h5>
+            </div></ng-template
+        ><ng-template ngbPanelContent
+            ><div class="row">
+                <div class="col-12"><span [ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}">{{request.status}}</span></div>
+                <div class="col-6 line justify-content-center align-content-center">
+                    <div>{{request.employeeName}}</div>
+                    <div>Request Date :</div>
+                    <div>{{request.requestDateTime | date: "dd MMM yyyy"}}</div>
+                </div>
+                <div class="col-6 text-right">
+                    <div>Approve Date :</div>
+                    <div>{{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}</div>
+                </div>
+                <div class="col-12 mt-2">
+                    <button class="btn btn-outline-primary w-100" (click)="openModal(contentDetail, i)">See Detail</button
+                    ><button class="mt-2 btn btn-primary btn-labebed w-100" (click)="downloadFile(request.attachmentPath)">
+                        <span class="pr-2"><fa-icon [icon]='["fas", "cloud-download-alt"]'></fa-icon></span><span>Download</span>
+                    </button>
+                </div>
+            </div></ng-template
+        ></ngb-panel
+    ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader></ngb-accordion
+><ng-template #contentDetail let-modal
+    ><div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Address Detail</h4>
+        <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Close Modal')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-title">Address</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newAdddress}}</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title">City</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newCity}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-title">Country</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newCountry}}</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title">Primary</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newPrimaryFlag ? 'Yes' : 'No'}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-title">Province</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newProvince}}</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title">Stay Status</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newStayStatus}}</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card-title">Type</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newType}}</span>
+                    </div>
+                    <div class="col-6">
+                        <div class="card-title">Zipcode</div>
+                        <span class="card-text text-break">{{listRequestAddress[idxSelected].addressRequestData.newZipCode}}</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div></ng-template
+><ng-template #contentApprove let-modal
+    ><div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Approval</h4>
+        <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Close Modal')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12"><label for="remark">Remark</label><input class="form-control" id="remark" type="text" placeholder="Input Remark" [(ngModel)]="modelRemark" /></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-right"></div>
+        <button class="mt-2 btn btn-success btn-labebed" (click)="approvalRequest(listRequestAddress[idxSelected].requestNo)">
+            <span class="pr-2"><fa-icon [icon]='["fas", "check"]'></fa-icon></span><span>Approve</span>
+        </button>
+    </div></ng-template
+>

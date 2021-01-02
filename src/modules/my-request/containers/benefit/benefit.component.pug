@@ -1,0 +1,32 @@
+sb-dashboard-head(title='My Request', [hideBreadcrumbs]='false')
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1", *ngIf="listRequestBenefit")
+    ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestBenefit; let i = index")
+        ng-template(ngbPanelHeader)
+            div.d-flex.align-items-center.justify-content-between
+                button.btn.btn-link.p-0(ngbPanelToggle) {{request.requestNo}}
+                h5.m-0 {{request.requestDatetime | date: "dd MMM yyyy hh:mm"}}
+        ng-template(ngbPanelContent)
+            div.row
+                div.col-12
+                    span([ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}") {{request.status}}
+                div.col-6.line.justify-content-center.align-content-center
+                    div {{request.benefitPlanName}}
+                    div Request Date :
+                    div {{request.requestDateTime | date: "dd MMM yyyy"}}
+                    div Remark :
+                    div {{request.remark == null ? '-' : request.remark}}
+                    div Manager Name :
+                    div {{request.managerName == null ? '-' : request.managerName}}
+                div.col-6.text-right
+                    div Approve Date :
+                    div {{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}
+                div.col-12.mt-2
+                    button.btn.btn-primary.btn-labebed.w-100((click)="downloadFile(request.attachment)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "cloud-download-alt"]')
+                        span Download
+                    button.mt-2.btn.btn-danger.btn-labebed.w-100(*ngIf="request.status == 'PENDING'", (click)="cancelRequest(request.requestNo)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "times"]')
+                        span Cancel
+    ng-http-loader(spinner="sk-three-bounce")

@@ -1,1 +1,30 @@
-p personal-address
+sb-fab(urlDirect='/self-service/personal/address-form')
+sb-dashboard-head(title="My Address", [hideBreadcrumbs]=true)
+div(*ngIf="listDataAddress == 'undefined'")
+    span No Address Availabled
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+    ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listDataAddress; let i = index")
+        ng-template(ngbPanelHeader)
+            div.d-flex.align-items-center.justify-content-between
+                button.btn.btn-link.p-0(ngbPanelToggle) Address {{request.primaryFlag ? 'Primary' : i+1}}
+        ng-template(ngbPanelContent)
+            div.row
+                div.col-12
+                    span([ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}") {{request.status}}
+                div.col-6.line.justify-content-center.align-content-center
+                    div {{request.employeeName}}
+                    div Request Date :
+                    div {{request.requestDateTime | date: "dd MMM yyyy"}}
+                div.col-6.text-right
+                    div Approve Date :
+                    div {{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}
+                div.col-12.mt-2
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="edit(request.addressId)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "edit"]')
+                        span Edit
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="downloadFile(request.attachment)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "cloud-download-alt"]')
+                        span Download
+    ng-http-loader(spinner="sk-three-bounce")

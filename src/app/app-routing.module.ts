@@ -50,6 +50,26 @@ const routes: Routes = [
             import('modules/self-service/self-service-routing.module').then(m => m.SelfServiceRoutingModule)
     },
     {
+        path: 'my-request',
+        loadChildren: () =>
+            import('modules/my-request/my-request-routing.module').then(m => m.MyRequestRoutingModule)
+    },
+    {
+        path: 'approval',
+        loadChildren: () =>
+            import('modules/approval/approval-routing.module').then(m => m.ApprovalRoutingModule)
+    },
+    {
+        path: 'timesheet',
+        loadChildren: () =>
+            import('modules/timesheet/timesheet-routing.module').then(m => m.TimesheetRoutingModule)
+    },
+    {
+        path: 'settings',
+        loadChildren: () =>
+            import('modules/settings/settings-routing.module').then(m => m.SettingsRoutingModule)
+    },
+    {
         path: 'version',
         loadChildren: () =>
             import('modules/utility/utility-routing.module').then(m => m.UtilityRoutingModule),

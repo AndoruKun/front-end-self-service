@@ -1,1 +1,20 @@
-p personal-family
+sb-fab(urlDirect='/self-service/personal/family-form')
+sb-dashboard-head(title="Family", [hideBreadcrumbs]=true)
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+    ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listDataFamily; let i = index")
+        ng-template(ngbPanelHeader)
+            div.d-flex.align-items-center.justify-content-between
+                button.btn.btn-link.p-0(ngbPanelToggle) {{request.fullName}}
+                span([ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}") {{request.status}}
+        ng-template(ngbPanelContent)
+            div.row
+                div.col-12.mt-2
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="edit(request.familyId)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "edit"]')
+                        span Edit
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="downloadFile(request.attachment)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "cloud-download-alt"]')
+                        span Download
+    ng-http-loader(spinner="sk-three-bounce")

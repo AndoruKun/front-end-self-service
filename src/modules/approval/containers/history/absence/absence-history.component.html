@@ -1,0 +1,50 @@
+<sb-dashboard-head title="Approval History" [hideBreadcrumbs]="false"></sb-dashboard-head
+><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+    ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAbsence; let i = index"
+        ><ng-template ngbPanelHeader
+            ><div class="d-flex align-items-center justify-content-between">
+                <button class="btn btn-link p-0" ngbPanelToggle>{{request.requestNo}}</button>
+                <h5 class="m-0">{{request.absenceEntity.requestDateTime | date: "dd MMM yyyy hh:mm"}}</h5>
+            </div></ng-template
+        ><ng-template ngbPanelContent
+            ><div class="row">
+                <div class="col-12">
+                    <div [ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}">{{request.status}}</div>
+                    <span>{{request.employeeName}}</span>
+                </div>
+                <div class="col-6 line justify-content-center align-content-center">
+                    <div>Absence for {{request.absenceEntity.type}} {{request.absenceEntity.amount}} Days</div>
+                    <div>Request Date :</div>
+                    <div>{{request.absenceEntity.startDate | date: "dd MMM yyyy"}} - {{request.absenceEntity.endDate | date: "dd MMM yyyy"}}</div>
+                    <div>Remark :</div>
+                    <div>{{request.absenceEntity.remark == null ? '-' : request.absenceEntity.remark}}</div>
+                </div>
+                <div class="col-6 text-right">
+                    <div>Absence Type :</div>
+                    <div>{{request.absenceEntity.absenceTypeEntity.name + " - " + request.absenceEntity.absenceTypeEntity.typeName}}</div>
+                </div>
+                <div class="col-12 mt-2">
+                    <button class="mt-2 btn btn-primary btn-labebed w-100" (click)="downloadFile(request.absenceEntity.attachment)">
+                        <span class="pr-2"><fa-icon [icon]='["fas", "cloud-download-alt"]'></fa-icon></span><span>Download</span>
+                    </button>
+                </div>
+            </div></ng-template
+        ></ngb-panel
+    ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader></ngb-accordion
+><ng-template #contentDetail let-modal
+    ><div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Approval</h4>
+        <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Close Modal')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12"><label for="remark">Remark</label><input class="form-control" id="remark" type="text" placeholder="Input Remark" [(ngModel)]="modelRemark" /></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="text-right"></div>
+        <button class="mt-2 btn btn-success btn-labebed" (click)="approvalRequest(listRequestAbsence[idxSelected].requestNo)">
+            <span class="pr-2"><fa-icon [icon]='["fas", "check"]'></fa-icon></span><span>Approve</span>
+        </button>
+    </div></ng-template
+>

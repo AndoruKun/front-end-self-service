@@ -1,0 +1,37 @@
+<sb-dashboard-head title="My Request" [hideBreadcrumbs]="false"></sb-dashboard-head
+><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+    ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAttemp; let i = index"
+        ><ng-template ngbPanelHeader
+            ><div class="d-flex align-items-center justify-content-between">
+                <button class="btn btn-link p-0" ngbPanelToggle>{{request.requestNo}}</button>
+                <h5 class="m-0">{{request.purpose}}</h5>
+            </div></ng-template
+        ><ng-template ngbPanelContent
+            ><div class="row">
+                <div class="col-12"><span class="text-success">Remark : {{request.remark}}</span></div>
+                <div class="col-6 line justify-content-center align-content-center">
+                    <div>Location Lat :</div>
+                    <div>Check Location :</div>
+                    <button class="btn btn-primary" (click)="openModal(contentMap, i)">Check Location Map</button>
+                    <div>Place Check In :</div>
+                    <div>{{request.outOffice ? 'Out Of Office' : 'In the Office'}}</div>
+                </div>
+                <div class="col-6 text-right">
+                    <div>Actual Time :</div>
+                    <div>{{request.actualTime | date: "dd MMM yyyy hh:mm"}}</div>
+                </div>
+            </div></ng-template
+        ></ngb-panel
+    ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader></ngb-accordion
+><ng-template #contentMap let-modal
+    ><div class="modal-header">
+        <h4 class="modal-title" id="modal-title">Location Detail</h4>
+        <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Close Modal')"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-12">
+                <google-map [center]="{lat: listRequestAttemp[idxSelected].actual_lat, lng: listRequestAttemp[idxSelected].actual_lng}" width="100%"><map-marker [position]="{lat: listRequestAttemp[idxSelected].actual_lat, lng: listRequestAttemp[idxSelected].actual_lng}" [options]="markerOptions"></map-marker></google-map>
+            </div>
+        </div></div
+></ng-template>

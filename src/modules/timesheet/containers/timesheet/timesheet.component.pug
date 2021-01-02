@@ -1,0 +1,46 @@
+sb-layout-timesheet
+    sb-dashboard-head(title='Timesheet', [hideBreadcrumbs]='true')
+    div.row
+        div.col-12.text-center.mb-3
+            ngb-datepicker.custom-monthyear-only.w-100(#dp, [(ngModel)]="modelToday", (navigate)="modelToday = $event.next")
+        div.col-12.text-center.mb-3
+            button.btn.btn-primary.w-100((click)="showTimesheet()") Show
+        div.col-12(*ngFor="let data of attendent")
+            h5.pl-1 {{data.date}}
+            div.bg-success(*ngIf="data.status == 'APPROVED'")
+                div.row.p-3.text-white.font-weight-bold
+                    div.col-6.text-center
+                        span Check In
+                    div.col-6.text-center
+                        span Check Out
+                    div.col-6.text-center
+                        span {{data.checkInTime}}
+                    div.col-6.text-center
+                        span {{data.checkOutTime}}
+                    div.col-12.pl-3.mt-2
+                        span Remark : {{data.remark}}
+            div.bg-danger(*ngIf="data.status == 'REJECTED'")
+                div.row.p-3.text-white.font-weight-bold
+                    div.col-6.text-center
+                        span Check In
+                    div.col-6.text-center
+                        span Check Out
+                    div.col-6.text-center
+                        span {{data.checkInTime}}
+                    div.col-6.text-center
+                        span {{data.checkOutTime}}
+                    div.col-12.pl-3.mt-2
+                        span Remark : {{data.remark}}
+            div.bg-danger(*ngIf="data.status == 'OFF'")
+                div.row.p-3.text-white.font-weight-bold
+                    div.col-6.text-center
+                        span Check In
+                    div.col-6.text-center
+                        span Check Out
+                    div.col-6.text-center
+                        span {{data.checkInTime}}
+                    div.col-6.text-center
+                        span {{data.checkOutTime}}
+                    div.col-12.pl-3.mt-2
+                        span Remark : {{data.remark}}
+    ng-http-loader(spinner="sk-three-bounce")

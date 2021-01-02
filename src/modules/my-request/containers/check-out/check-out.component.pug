@@ -1,0 +1,30 @@
+sb-dashboard-head(title='My Request', [hideBreadcrumbs]='false')
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+    ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestAttemp; let i = index")
+        ng-template(ngbPanelHeader)
+            div.d-flex.align-items-center.justify-content-between
+                button.btn.btn-link.p-0(ngbPanelToggle) {{request.requestNo}}
+                h5.m-0 {{request.purpose}}
+        ng-template(ngbPanelContent)
+            div.row
+                div.col-12
+                    span.text-success Remark : {{request.remark}}
+                div.col-6.line.justify-content-center.align-content-center
+                    div Check Location :
+                    button.btn.btn-primary((click)="openModal(contentMap, i)") Check Location Map
+                    div Place Check In :
+                    div {{request.outOffice ? 'Out Of Office' : 'In the Office'}}
+                div.col-6.text-right
+                    div Actual Time :
+                    div {{request.actualTime | date: "dd MMM yyyy hh:mm"}}
+    ng-http-loader(spinner="sk-three-bounce")
+ng-template(#contentMap, let-modal)
+    div.modal-header
+        h4.modal-title#modal-title Location Detail
+        button.close(type="button", aria-label="Close", (click)="modal.dismiss('Close Modal')")
+            span(aria-hidden="true") &times;
+    div.modal-body
+        div.row
+            div.col-12
+                google-map([center]="{lat: listRequestAttemp[idxSelected].actual_lat, lng: listRequestAttemp[idxSelected].actual_lng}",width="100%")
+                    map-marker([position]="{lat: listRequestAttemp[idxSelected].actual_lat, lng: listRequestAttemp[idxSelected].actual_lng}", [options]="markerOptions")

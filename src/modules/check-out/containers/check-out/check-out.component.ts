@@ -80,7 +80,11 @@ export class CheckOutComponent implements OnInit {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.requestNo, result.message)
+                    this.methodServices.sweetAlert('success', result.requestNo, result.message, (result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
             })
     }
 }

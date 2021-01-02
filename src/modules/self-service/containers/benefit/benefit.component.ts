@@ -108,7 +108,7 @@ export class BenefitComponent implements OnInit {
 
     submitProc() {
         let formData = new FormData()
-        let transactionDate = this.transactionDate.year+"-"+this.transactionDate.month+"-"+this.transactionDate.day
+        let transactionDate = this.methodServices.recorrectConvertDate(this.transactionDate)
 
         let dataBody = {
             "benefitReason": this.modelReason,
@@ -127,7 +127,11 @@ export class BenefitComponent implements OnInit {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.message)
+                    this.methodServices.sweetAlert('success', result.message, "Success",(result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
             })
     }
 }

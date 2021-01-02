@@ -13,9 +13,9 @@ import { MethodServices } from '../../../../service/method-service';
 })
 export class CheckInComponent implements OnInit {
     dataLocation:any
-    markerPositions:any
     modelOutOffice:any
     disabledBtn:boolean = true
+    markerPositions:any
     markerOptions: google.maps.MarkerOptions = {draggable: false};
     center: google.maps.LatLngLiteral | undefined
     modelRemark:any
@@ -77,11 +77,15 @@ export class CheckInComponent implements OnInit {
         this.methodServices.postData(dataObj,
             localStorage.getItem('Token'),
             '/api/v1/attempdaily',
-            (result:any)=>{
+            (result:any)=> {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.requestNo, result.message)
+                    this.methodServices.sweetAlert('success', result.requestNo, result.message, (result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
             })
     }
 }

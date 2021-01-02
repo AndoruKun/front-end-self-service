@@ -14,9 +14,12 @@ export class SideNavItemComponent implements OnInit {
 
     expanded = false;
     routeData!: SBRouteData;
+    checkAccess:any
 
     constructor(
         private methodService:MethodServices
     ) {}
-    ngOnInit() {}
+    ngOnInit() {
+        this.checkAccess = (checkAccess:any) => this.methodService.checkAccessAuthorization(checkAccess)
+    }
 }

@@ -19,3 +19,38 @@
 @import "navigation/sidenav/sidenav.scss";
 @import "navigation/sidenav/sidenav-dark.scss";
 @import "navigation/sidenav/sidenav-light.scss";
+
+.container-fab {
+    display: block;
+    position: fixed;
+    bottom: 75px;
+    right: 25px;
+    z-index: 999999999;
+    .fab-inner {
+        position: relative;
+        cursor: pointer;
+        .fab {
+            display: block;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            color: #fff;
+            font-size: 22px;
+            line-height: 58px;;
+            position: relative;
+            border-radius: 50% 50%;
+            bottom: 0px;
+            right: 0px;
+            box-shadow: $box-shadow;
+            background-color: $blue;
+            opacity: 1;
+            transition: all 0.4s;
+        }
+    }
+}
+
+.custom-monthyear-only {
+    .ngb-dp-month  {
+        display: none !important;
+    }
+}

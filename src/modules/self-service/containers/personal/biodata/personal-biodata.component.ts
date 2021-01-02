@@ -117,7 +117,7 @@ export class PersonalBiodataComponent implements OnInit {
 
     submitProc() {
         let formData = new FormData()
-        let birthDate = typeof this.birthDate != "undefined" ? this.birthDate.year+"-"+(this.birthDate.month < 10 ? "0"+this.birthDate.month : this.birthDate.month)+"-"+(this.birthDate.day < 10 ? "0"+this.birthDate.day : this.birthDate.day) : null
+        let birthDate = typeof this.birthDate != "undefined" ? this.methodServices.recorrectConvertDate(this.birthDate) : null
 
 
 
@@ -150,7 +150,11 @@ export class PersonalBiodataComponent implements OnInit {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else
-                    this.methodServices.sweetAlert('success', result.message)
+                    this.methodServices.sweetAlert('success', result.message, "Success", (result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
             })
     }
 }

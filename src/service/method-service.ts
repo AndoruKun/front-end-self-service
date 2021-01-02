@@ -1,16 +1,20 @@
-import { Injectable, OnInit } from "@angular/core"
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { Injectable, Input, OnInit } from '@angular/core';
+import { HttpClient, HttpHeaderResponse } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { environment } from '../environments/environment'
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '@modules/auth/models';
+import { SideNavItems, SideNavSection } from '@modules/navigation/models';
+
 
 @Injectable({providedIn:'root'})
 
 export class MethodServices {
-    dataUser = []
+    sideNavItems!: SideNavItems
     userAuthorities = []
     token_status:boolean = false
     error_msg:string = "";
@@ -55,11 +59,12 @@ export class MethodServices {
     getToken(remember_status:any,tok:any,username:any,password:any)
     {
         this.token = tok;
-        this.access_token = tok.Authorization;
-
+        this.access_token = tok.Authorization
         this.token_status = true;
         this.title = this.location.prepareExternalUrl(this.location.path())
         var login_exists = this.title.indexOf('/auth/login')
+        if (this.userAuthorities.length == 0)
+            this.decodeJWT(this.access_token)
 
         if (typeof(Storage) !== 'undefined')
             localStorage.setItem("Token",this.access_token)
@@ -82,6 +87,14 @@ export class MethodServices {
                 localStorage.setItem('password',password)
             }
 
+            if (localStorage.getItem('remember_me') !== null) {
+                localStorage.removeItem('remember_me')
+            }
+
+            if (remember_status) {
+                localStorage.setItem('remember_me', remember_status)
+            }
+
             this.router.navigate(["/dashboard"]);
         }
     }
@@ -92,18 +105,45 @@ export class MethodServices {
         if(typeof token == "undefined") {
             token = localStorage.get("Token")
         }
-
-        if (!(typeof params == "undefined" || params == "")) {
+        if (typeof params != "undefined" && params != "") {
             tempParams = "?"+params
+        } else {
+            tempParams = ""
         }
 
-        this.http.get(api, {
+        this.http.get(api + tempParams, {
             headers: {
                 Authorization: token
             }
         }).subscribe(result => {
             callback(result)
         }, error => {
+            this.error_page_code = 400
+            callback('Error')
+        })
+    }
+
+    getUrlApiFile(urlApi:any, token:any, callback:any, params?:any) {
+        let tempParams = "";
+        let api = urlApi
+        if(typeof token == "undefined") {
+            token = localStorage.get("Token")
+        }
+        if (typeof params != "undefined" && params != "") {
+            tempParams = "?"+params
+        } else {
+            tempParams = ""
+        }
+
+        this.http.get(api + tempParams, {
+            headers: {
+                Authorization: token
+            },
+            responseType: 'blob'
+        }).subscribe(result => {
+            callback(result)
+        }, error => {
+            console.log(error)
             this.error_page_code = 400
             callback('Error')
         })
@@ -132,6 +172,40 @@ export class MethodServices {
         }
         else{
             this.error_msg = 'Please Check your connection.'
+        }
+    }
+
+    decodeJWT(token:any) {
+        const helper = new JwtHelperService()
+        let getToken = token.split(" ")
+        let decodeJWT = helper.decodeToken(getToken[1])
+        this.userAuthorities = decodeJWT.Roles;
+    }
+
+    checkAccessAuthorization(accessPermission?:string) {
+        if (this.userAuthorities.length == 0)
+            this.decodeJWT(localStorage.getItem('Token'))
+
+        if (this.userAuthorities.length > 0) {
+            let checkAccess: number;
+            if (typeof accessPermission != "undefined") {
+                if (accessPermission.includes(",")) {
+                    let splitAccessPermission = accessPermission.split(",")
+                    for (let i = 0; i < splitAccessPermission.length; i++) {
+                        // @ts-ignore
+                        checkAccess = this.userAuthorities.indexOf(splitAccessPermission[i])
+                        if (checkAccess != -1)
+                            return true
+                    }
+                } else {
+                    // @ts-ignore
+                    checkAccess = this.userAuthorities.indexOf(accessPermission)
+                    if (checkAccess != -1)
+                        return true
+                    else
+                        return false
+                }
+            }
         }
     }
 
@@ -167,7 +241,7 @@ export class MethodServices {
             }
         )
     }
-    sweetAlert(type:any,msg:any,title?:any) {
+    sweetAlert(type:any,msg:any,title?:any, confirmFunc?:any) {
         switch(type) {
             case "error":
                 // @ts-ignore
@@ -193,7 +267,17 @@ export class MethodServices {
                     customClass: {
                         confirmButton: "btn btn-primary"
                     }
+                }).then((result:any) => {
+                    confirmFunc(result)
                 })
         }
+    }
+
+    recorrectConvertDate(date:any) {
+        let year = date.year
+        let month = date.month < 10 ? "0"+date.month : date.month
+        let day = date.day < 10 ? "0"+date.day : date.day
+
+        return year+"-"+month+"-"+day
     }
 }

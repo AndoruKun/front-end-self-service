@@ -1,0 +1,108 @@
+sb-dashboard-head(title='Approval', [hideBreadcrumbs]='false')
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+    ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestFamily; let i = index")
+        ng-template(ngbPanelHeader)
+            div.d-flex.align-items-center.justify-content-between
+                button.btn.btn-link.p-0(ngbPanelToggle) {{request.requestNo}}
+                h5.m-0 {{request.requestDateTime | date: "dd MMM yyyy hh:mm"}}
+        ng-template(ngbPanelContent)
+            div.row
+                div.col-12
+                    span([ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}") {{request.status}}
+                div.col-6.line.justify-content-center.align-content-center
+                    div {{request.employeeName}}
+                    div Request Date :
+                    div {{request.requestDateTime | date: "dd MMM yyyy"}}
+                div.col-6.text-right
+                    div Approve Date :
+                    div {{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}
+                div.col-12.mt-2
+                    button.btn.btn-outline-primary.w-100((click)="openModal(contentDetail, i)") See Detail
+                    button.mt-2.btn.btn-success.w-100((click)="openModal(contentApprove, i)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "check"]')
+                        span Approval
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="downloadFile(request.attachment)")
+                        span.pr-2
+                            fa-icon([icon]='["fas", "cloud-download-alt"]')
+                        span Download
+    ng-http-loader(spinner="sk-three-bounce")
+ng-template(#contentDetail, let-modal)
+    div.modal-header
+        h4.modal-title#modal-basic-title Employee Request Detail
+        button.close(type="button", aria-label="Close", (click)="modal.dismiss('Close Modal')")
+            span(aria-hidden="true") &times;
+    div.modal-body
+        ul.list-group.list-group-flush
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title New Name
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newFullName}}
+                    div.col-6
+                        div.card-title Birth Date
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newBirthDate | date: "dd MMM yyyy"}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title Gender
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newGender}}
+                    div.col-6
+                        div.card-title Relationship
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newRelationship}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title Alive Status
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newAliveStatus}}
+                    div.col-6
+                        div.card-title Blood Type
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newBloodType}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title Address
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newAddress}}
+                    div.col-6
+                        div.card-title City
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newCity}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title Zipcode
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newZipCode}}
+                    div.col-6
+                        div.card-title Marital Status
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newMaritalStatus}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title No. KK
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newFamilyCardNo}}
+                    div.col-6
+                        div.card-title Personal Email
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newEmail}}
+            li.list-group-item
+                div.row
+                    div.col-6
+                        div.card-title Nationality
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newNationality}}
+                    div.col-6
+                        div.card-title Mobile Phone
+                        span.card-text.text-break {{listRequestFamily[idxSelected].familyRequestData.newMobilePhone}}
+ng-template(#contentApprove, let-modal)
+    div.modal-header
+        h4.modal-title#modal-title Approval
+        button.close(type="button", aria-label="Close", (click)="modal.dismiss('Close Modal')")
+            span(aria-hidden="true") &times;
+    div.modal-body
+        div.row
+            div.col-12
+                label(for="remark") Remark
+                input.form-control#remark(type="text", placeholder="Input Remark", [(ngModel)]="modelRemark")
+    div.modal-footer
+        div.text-right
+        button.mt-2.btn.btn-success.btn-labebed((click)="approvalRequest(listRequestFamily[idxSelected].requestNo)")
+            span.pr-2
+                fa-icon([icon]='["fas", "check"]')
+            span Approve
