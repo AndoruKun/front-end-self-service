@@ -39,7 +39,7 @@ export const ROUTES: Routes = [
                         },
                     ],
                 } as SBRouteData,
-                canActivate: [],
+                canActivate: [approvalGuards.ApprovalGuard],
                 component: approvalContainers.AbsenceComponent
             },
             {
@@ -57,6 +57,7 @@ export const ROUTES: Routes = [
                         },
                     ],
                 } as SBRouteData,
+                canActivate: [approvalGuards.ApprovalGuard],
                 component: approvalContainers.BenefitComponent
             },
             {
@@ -74,11 +75,12 @@ export const ROUTES: Routes = [
                         },
                     ],
                 } as SBRouteData,
+                canActivate: [approvalGuards.ApprovalGuard],
                 component: approvalContainers.CheckinOutComponent
             },
             {
                 path: 'personal',
-                canActivate: [],
+                canActivate: [approvalGuards.ApprovalGuard],
                 children: [
                     {
                         path: '',
@@ -169,7 +171,7 @@ export const ROUTES: Routes = [
                                 },
                             ],
                         } as SBRouteData,
-                        canActivate: [],
+                        canActivate: [approvalGuards.ApprovalGuard],
                         component: approvalContainers.AbsenceHistoryComponent
                     },
                     {
@@ -187,6 +189,7 @@ export const ROUTES: Routes = [
                                 },
                             ],
                         } as SBRouteData,
+                        canActivate: [approvalGuards.ApprovalGuard],
                         component: approvalContainers.BenefitHistoryComponent
                     },
                     {
@@ -204,11 +207,12 @@ export const ROUTES: Routes = [
                                 },
                             ],
                         } as SBRouteData,
+                        canActivate: [approvalGuards.ApprovalGuard],
                         component: approvalContainers.CheckinOutHistoryComponent
                     },
                     {
                         path: 'personal',
-                        canActivate: [],
+                        canActivate: [approvalGuards.ApprovalGuard],
                         children: [
                             {
                                 path: '',

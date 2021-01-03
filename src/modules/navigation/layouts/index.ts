@@ -9,8 +9,9 @@ import { LayoutMyRequestComponent } from './layout-my-request/layout-my-request.
 import { LayoutTimesheetComponent } from './layout-timesheet/layout-timesheet.component';
 import { LayoutApprovalComponent } from './layout-approval/layout-approval.component';
 import { LayoutSettingsComponent } from './layout-settings/layout-settings.component';
+import { LayoutReportsComponent } from './layout-reports/layout-reports.component';
 
-export const layouts = [LayoutDashboardComponent, LayoutAuthComponent, LayoutErrorComponent, LayoutSelfServiceComponent, LayoutMyTeamComponent, LayoutCheckInComponent, LayoutCheckOutComponent, LayoutMyRequestComponent, LayoutTimesheetComponent, LayoutApprovalComponent, LayoutSettingsComponent];
+export const layouts = [LayoutDashboardComponent, LayoutAuthComponent, LayoutErrorComponent, LayoutSelfServiceComponent, LayoutMyTeamComponent, LayoutCheckInComponent, LayoutCheckOutComponent, LayoutMyRequestComponent, LayoutTimesheetComponent, LayoutApprovalComponent, LayoutSettingsComponent, LayoutReportsComponent];
 
 export * from './layout-dashboard/layout-dashboard.component';
 export * from './layout-auth/layout-auth.component';
@@ -23,3 +24,4 @@ export * from './layout-my-request/layout-my-request.component';
 export * from './layout-timesheet/layout-timesheet.component';
 export * from './layout-approval/layout-approval.component';
 export * from './layout-settings/layout-settings.component';
+export * from './layout-reports/layout-reports.component';

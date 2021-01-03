@@ -1,2 +1,22 @@
 sb-layout-my-team
     sb-dashboard-head(title='My Teams', [hideBreadcrumbs]='false')
+    ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+        ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let team of listMyTeam; let i = index")
+            ng-template(ngbPanelHeader)
+                div.d-flex.align-items-center.justify-content-between
+                    button.btn.btn-link.p-0(ngbPanelToggle) {{team.name}}
+            ng-template(ngbPanelContent)
+                div.row
+                    div.col-6.line.justify-content-center.align-content-center
+                        div Position :
+                        div {{team.position}}
+                        div Employee Status :
+                        div {{team.employeeStatus}}
+                        div Supervisor :
+                        div {{team.directSupervisor}}
+                    div.col-6.text-right
+                        div Start Date :
+                        div {{team.startDate | date: "dd MMM yyyy"}}
+                        div End Date :
+                        div {{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}
+        ng-http-loader(spinner="sk-three-bounce")

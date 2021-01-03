@@ -1,0 +1,32 @@
+sb-dashboard-head(title='Report Address', [hideBreadcrumbs]='false')
+div.row
+    div.col-12
+        h3 Filter
+    div.col-12.col-md-6
+        label(for="startDate") Start Date
+        div.input-group
+            input#startDate.form-control(ngbDatepicker, #fromdate="ngbDatepicker", [(ngModel)]="fromDate", (input)="fromDate = validateInput(fromDate, fromdate.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event,'fromDate')", [startDate]="formDate!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="fromdate.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6
+        label(for="toDate") To Date
+        div.input-group
+            input#toDate.form-control(ngbDatepicker, #todate="ngbDatepicker", [(ngModel)]="toDate", (input)="toDate = validateInput(toDate, todate.value())", [autoClose]="'outside'", (dateSelect)="onDateSelection($event, 'toDate')", [startDate]="toDate!", tabindex="-1")
+            div.input-group-append
+                button.btn.btn-outline-secondary(type="button", (click)="todate.toggle()")
+                    fa-icon([icon]='["fas", "calendar-alt"]')
+    div.col-12.col-md-6
+        div.form-group
+            label(for="employee") Employee
+            ng-select2#employee([(ngModel)]="modelFilterEmployee", [data]="arrEmployeeList", [allowClear]="false", [placeholder]="'Select...'")
+        //select#employee.form-control
+        //    option(*ngFor="let employee of employeeList", [value]='employee.employeeNo') {{employee.firstName + " " + employee.lastName}}
+    div.col-12.col-md-6
+        div.form-group
+            label(for="status") Status
+            ng-select2#status([(ngModel)]="modelFilterStatus", [data]="arrStatusList", [allowClear]="false", [placeholder]="'Select...'")
+    div.col-12.mt-3
+        button.btn.btn-primary.w-100((click)="filter()") Download
+    ng-http-loader(spinner="sk-three-bounce")
+

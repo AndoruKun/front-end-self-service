@@ -114,7 +114,7 @@ export class MethodServices {
         this.http.get(api + tempParams, {
             headers: {
                 Authorization: token
-            }
+            },
         }).subscribe(result => {
             callback(result)
         }, error => {
@@ -123,9 +123,14 @@ export class MethodServices {
         })
     }
 
-    getUrlApiFile(urlApi:any, token:any, callback:any, params?:any) {
+    getUrlApiFile(urlApi:any, token:any, callback:any, params?:any, typeApi?:any) {
         let tempParams = "";
         let api = urlApi
+
+        if (typeof typeApi != "undefined") {
+            api = environment.baseUrl + urlApi
+        }
+
         if(typeof token == "undefined") {
             token = localStorage.get("Token")
         }
@@ -139,9 +144,10 @@ export class MethodServices {
             headers: {
                 Authorization: token
             },
+            observe: 'response',
             responseType: 'blob'
-        }).subscribe(result => {
-            callback(result)
+        }).subscribe(resp => {
+            callback(resp.body)
         }, error => {
             console.log(error)
             this.error_page_code = 400

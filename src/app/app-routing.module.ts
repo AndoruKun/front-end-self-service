@@ -60,6 +60,11 @@ const routes: Routes = [
             import('modules/approval/approval-routing.module').then(m => m.ApprovalRoutingModule)
     },
     {
+        path: 'reports',
+        loadChildren: () =>
+            import('modules/reports/reports-routing.module').then(m => m.ReportsRoutingModule)
+    },
+    {
         path: 'timesheet',
         loadChildren: () =>
             import('modules/timesheet/timesheet-routing.module').then(m => m.TimesheetRoutingModule)

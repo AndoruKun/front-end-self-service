@@ -1,0 +1,31 @@
+<sb-dashboard-head title="Report Family" [hideBreadcrumbs]="false"></sb-dashboard-head>
+<div class="row">
+    <div class="col-12"><h3>Filter</h3></div>
+    <div class="col-12 col-md-6">
+        <label for="startDate">Start Date</label>
+        <div class="input-group">
+            <input class="form-control" id="startDate" ngbDatepicker #fromdate="ngbDatepicker" [(ngModel)]="fromDate" (input)="fromDate = validateInput(fromDate, fromdate.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event,'fromDate')" [startDate]="formDate!" tabindex="-1" />
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="fromdate.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <label for="toDate">To Date</label>
+        <div class="input-group">
+            <input class="form-control" id="toDate" ngbDatepicker #todate="ngbDatepicker" [(ngModel)]="toDate" (input)="toDate = validateInput(toDate, todate.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event, 'toDate')" [startDate]="toDate!" tabindex="-1" />
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" (click)="todate.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="form-group"><label for="employee">Employee</label><ng-select2 id="employee" [(ngModel)]="modelFilterEmployee" [data]="arrEmployeeList" [allowClear]="false" [placeholder]="'Select...'"></ng-select2></div>
+        <!--select#employee.form-control--><!--    option(*ngFor="let employee of employeeList", [value]='employee.employeeNo') {{employee.firstName + " " + employee.lastName}}-->
+    </div>
+    <div class="col-12 col-md-6">
+        <div class="form-group"><label for="status">Status</label><ng-select2 id="status" [(ngModel)]="modelFilterStatus" [data]="arrStatusList" [allowClear]="false" [placeholder]="'Select...'"></ng-select2></div>
+    </div>
+    <div class="col-12 mt-3"><button class="btn btn-primary w-100" (click)="filter()">Download</button></div>
+    <ng-http-loader spinner="sk-three-bounce"></ng-http-loader>
+</div>

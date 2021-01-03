@@ -19,6 +19,7 @@ import * as myTeamGuards from './guards';
 
 /* Services */
 import * as myTeamServices from './services';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
     imports: [
@@ -28,6 +29,7 @@ import * as myTeamServices from './services';
         FormsModule,
         AppCommonModule,
         NavigationModule,
+        NgHttpLoaderModule.forRoot()
     ],
     providers: [...myTeamServices.services, ...myTeamGuards.guards],
     declarations: [...myTeamContainers.containers, ...myTeamComponents.components],

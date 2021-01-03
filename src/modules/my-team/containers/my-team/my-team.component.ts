@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MethodServices } from '../../../../service/method-service';
 
 @Component({
     selector: 'sb-my-team',
@@ -7,6 +8,20 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
     styleUrls: ['my-team.component.scss'],
 })
 export class MyTeamComponent implements OnInit {
-    constructor() {}
-    ngOnInit() {}
+    listMyTeam:any
+    constructor(
+        private methodService:MethodServices
+    ) {}
+    ngOnInit() {
+        this.loadMyTeamData()
+    }
+
+    loadMyTeamData() {
+        this.methodService.getUrlApi(
+            '/api/v1/employee/myteam',
+            localStorage.getItem('Token'),
+            (response:any) => {
+                this.listMyTeam = response
+        })
+    }
 }

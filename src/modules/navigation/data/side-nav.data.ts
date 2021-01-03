@@ -17,6 +17,11 @@ export const sideNavSections: SideNavSection[] = [
         items: ['request_absence', 'request_benefit', 'request_checkin_checkout', 'request_personal'],
     },
     {
+        text: 'REPORT',
+        authorization: 'HRADMIN,MANAGER',
+        items: ['report_absence', 'report_benefit', 'report_checkin_checkout', 'report_personal'],
+    },
+    {
         text: 'Check In/Out',
         authorization: 'EMPLOYEE',
         items: ['check_in', 'check_out']
@@ -229,6 +234,47 @@ export const sideNavItems: SideNavItems = {
         text: 'CheckIn/Out',
         link: '/approval/history/checkin-out',
         authorization: 'MANAGER'
+    },
+    report_absence: {
+        icon: 'user-clock',
+        text: 'Absence',
+        link: '/reports/absence',
+        authorization: 'MANAGER'
+    },
+    report_benefit: {
+        icon: 'user-plus',
+        text: 'Benefit',
+        link: '/reports/benefit',
+        authorization: 'MANAGER'
+    },
+    report_checkin_checkout: {
+        icon: 'clock',
+        text: 'Check In / Out',
+        link: '/reports/checkin-out',
+        authorization: 'MANAGER',
+    },
+    report_personal: {
+        icon: 'user',
+        text: 'Personal',
+        authorization: 'HRADMIN',
+        submenu: [
+            {
+                text: 'Biodata',
+                link: '/reports/personal/biodata',
+                authorization: 'HRADMIN',
+            },
+            {
+                text: 'Address',
+                link: '/reports/personal/address',
+                authorization: 'HRADMIN',
+
+            },
+            {
+                text: 'Family',
+                link: '/reports/personal/family',
+                authorization: 'HRADMIN',
+            }
+        ]
     },
     settings: {
         icon: 'cogs',

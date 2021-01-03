@@ -1,1 +1,26 @@
-<sb-layout-my-team><sb-dashboard-head title="My Teams" [hideBreadcrumbs]="false"></sb-dashboard-head></sb-layout-my-team>
+<sb-layout-my-team
+    ><sb-dashboard-head title="My Teams" [hideBreadcrumbs]="false"></sb-dashboard-head
+    ><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+        ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let team of listMyTeam; let i = index"
+            ><ng-template ngbPanelHeader
+                ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>{{team.name}}</button></div></ng-template
+            ><ng-template ngbPanelContent
+                ><div class="row">
+                    <div class="col-6 line justify-content-center align-content-center">
+                        <div>Position :</div>
+                        <div>{{team.position}}</div>
+                        <div>Employee Status :</div>
+                        <div>{{team.employeeStatus}}</div>
+                        <div>Supervisor :</div>
+                        <div>{{team.directSupervisor}}</div>
+                    </div>
+                    <div class="col-6 text-right">
+                        <div>Start Date :</div>
+                        <div>{{team.startDate | date: "dd MMM yyyy"}}</div>
+                        <div>End Date :</div>
+                        <div>{{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}</div>
+                    </div>
+                </div></ng-template
+            ></ngb-panel
+        ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader></ngb-accordion
+></sb-layout-my-team>
