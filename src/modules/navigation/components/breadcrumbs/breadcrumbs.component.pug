@@ -3,8 +3,7 @@ ol.breadcrumb.mb-4
         *ngFor='let breadcrumb of breadcrumbs',
         [ngClass]='{active: breadcrumb.active}'
     )
-        a(
+        span(
             *ngIf='breadcrumb.link',
-            [routerLink]='breadcrumb.link',
         ) {{breadcrumb.text}}
         span(*ngIf='!breadcrumb.link') {{breadcrumb.text}}

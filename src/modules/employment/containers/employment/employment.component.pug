@@ -1,0 +1,25 @@
+sb-layout-employment
+    sb-dashboard-head(title="Employment", [hideBreadcrumbs]="false")
+    ul.list-group.list-group-flush(*ngIf="dataEmployment")
+        li.list-group-item
+            span.card-title Name
+            h4.card-text {{dataEmployment.name}}
+        li.list-group-item
+            span.card-title Position
+            h4.card-text {{dataEmployment.position}}
+        li.list-group-item
+            span.card-title Department
+            h4.card-text {{dataEmployment.department}}
+        li.list-group-item
+            span.card-title Supervisor
+            h4.card-text {{dataEmployment.directSupervisor}}
+        li.list-group-item
+            span.card-title Employee Status
+            h4.card-text {{dataEmployment.employeeStatus}}
+        li.list-group-item
+            span.card-title Start Date
+            h4.card-text {{dataEmployment.startDate | date: 'dd MMM yyyy'}}
+        li.list-group-item
+            span.card-title End Date
+            h4.card-text {{dataEmployment.endDate}}
+    ng-http-loader(spinner="sk-three-bounce")

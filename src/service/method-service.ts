@@ -48,7 +48,7 @@ export class MethodServices {
                     callback(this.error_msg,this.access_token)
                 },
                 err => {
-                    this.getError(err,err.status);
+                    this.getError(err.error,err.status);
                     // console.log(err)
                     callback(this.error_msg,this.access_token)
                 }

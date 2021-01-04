@@ -1,1 +1,45 @@
-<sb-layout-dashboard><sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head><sb-dashboard-cards></sb-dashboard-cards><sb-dashboard-charts></sb-dashboard-charts><sb-dashboard-tables></sb-dashboard-tables></sb-layout-dashboard>
+<sb-layout-dashboard
+    ><sb-dashboard-head title="Dashboard" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <div class="row">
+        <div class="col-6 mt-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <a class="text-decoration-none" [routerLink]="'/profile'"
+                        ><div><fa-icon [icon]='["fas", "user"]'></fa-icon></div>
+                        <span class="card-text">Profile</span></a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mt-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <a class="text-decoration-none" [routerLink]="'/employment'"
+                        ><div><fa-icon [icon]='["fas", "users"]'></fa-icon></div>
+                        <span class="card-text">Employment</span></a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mt-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <a class="text-decoration-none" [routerLink]="'/address'"
+                        ><div><fa-icon [icon]='["fas", "map-marked-alt"]'></fa-icon></div>
+                        <span class="card-text">Address</span></a
+                    >
+                </div>
+            </div>
+        </div>
+        <div class="col-6 mt-2">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <a class="text-decoration-none" [routerLink]="'/family'"
+                        ><div><fa-icon [icon]='["fas", "house-user"]'></fa-icon></div>
+                        <span class="card-text">Family</span></a
+                    >
+                </div>
+            </div>
+        </div>
+    </div></sb-layout-dashboard
+>

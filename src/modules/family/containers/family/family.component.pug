@@ -1,0 +1,75 @@
+sb-layout-family
+    sb-dashboard-head(title="Family", [hideBreadcrumbs]="false")
+    ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
+        ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listDataFamily; let i = index")
+            ng-template(ngbPanelHeader)
+                div.d-flex.align-items-center.justify-content-between
+                    button.btn.btn-link.p-0(ngbPanelToggle) {{request.fullName}}
+            ng-template(ngbPanelContent)
+                div.row
+                    div.col-12.mt-2
+                        button.btn.btn-outline-primary.w-100((click)="openModal(contentDetail, i)") See Detail
+        ng-http-loader(spinner="sk-three-bounce")
+    ng-template(#contentDetail, let-modal)
+        div.modal-header
+            h4.modal-title#modal-basic-title Family Detail
+            button.close(type="button", aria-label="Close", (click)="modal.dismiss('Close Modal')")
+                span(aria-hidden="true") &times;
+        div.modal-body
+            ul.list-group.list-group-flush
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title New Name
+                            span.card-text.text-break {{listDataFamily[idxSelected].fullName}}
+                        div.col-6
+                            div.card-title Birth Date
+                            span.card-text.text-break {{listDataFamily[idxSelected].birthDate | date: "dd MMM yyyy"}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title Gender
+                            span.card-text.text-break {{listDataFamily[idxSelected].gender}}
+                        div.col-6
+                            div.card-title Relationship
+                            span.card-text.text-break {{listDataFamily[idxSelected].relationship}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title Alive Status
+                            span.card-text.text-break {{listDataFamily[idxSelected].aliveStatus}}
+                        div.col-6
+                            div.card-title Blood Type
+                            span.card-text.text-break {{listDataFamily[idxSelected].bloodType}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title Address
+                            span.card-text.text-break {{listDataFamily[idxSelected].address}}
+                        div.col-6
+                            div.card-title City
+                            span.card-text.text-break {{listDataFamily[idxSelected].city}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title Zipcode
+                            span.card-text.text-break {{listDataFamily[idxSelected].zipCode}}
+                        div.col-6
+                            div.card-title Marital Status
+                            span.card-text.text-break {{listDataFamily[idxSelected].maritalStatus}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title No. KK
+                            span.card-text.text-break {{listDataFamily[idxSelected].familyCardNo}}
+                        div.col-6
+                            div.card-title Personal Email
+                            span.card-text.text-break {{listDataFamily[idxSelected].email}}
+                li.list-group-item
+                    div.row
+                        div.col-6
+                            div.card-title Nationality
+                            span.card-text.text-break {{listDataFamily[idxSelected].nationality}}
+                        div.col-6
+                            div.card-title Mobile Phone
+                            span.card-text.text-break {{listDataFamily[idxSelected].mobilePhone}}

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
     modelEmail:any
     modelPassword:any
     modelRememberMe:any
-    err_msg:any
+    err_msg:any = ""
 
     constructor(
         public methodService:MethodServices) {
@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
             this.modelEmail,
             this.modelPassword,
             (error_msg_res:any,access_token_res:any) => {
-            this.err_msg = error_msg_res
+            this.err_msg = "Failed Login"
         })
 
         // this.methodService.processToken(

@@ -29,7 +29,10 @@ import {
     faCloudDownloadAlt,
     faTimes,
     faEdit,
-    faCheck
+    faCheck,
+    faUsers,
+    faMapMarkedAlt,
+    faHouseUser
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeSolidIcons = {
@@ -61,5 +64,8 @@ export const fontAwesomeSolidIcons = {
     faCloudDownloadAlt,
     faTimes,
     faEdit,
-    faCheck
+    faCheck,
+    faUsers,
+    faMapMarkedAlt,
+    faHouseUser
 };

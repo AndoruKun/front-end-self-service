@@ -43,6 +43,7 @@ export class CheckInComponent implements OnInit {
     }
 
     openModal(content:any, idxData:any) {
+        this.idxSelected = idxData
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true, scrollable: true })
     }
 }

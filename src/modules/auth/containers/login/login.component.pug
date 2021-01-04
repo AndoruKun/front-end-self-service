@@ -6,6 +6,7 @@ sb-layout-auth
                     .card-header
                         h3.text-center.font-weight-light.my-4 Login
                     .card-body
+                        ngb-alert([type]="'danger'", *ngIf="err_msg != ''") {{ err_msg }}
                         form
                             .form-group
                                 label.small.mb-1(for='inputEmailAddress') Email

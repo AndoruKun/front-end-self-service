@@ -35,6 +35,26 @@ const routes: Routes = [
             import('modules/my-team/my-team-routing.module').then(m => m.MyTeamRoutingModule),
     },
     {
+        path: 'profile',
+        loadChildren: () =>
+            import('modules/profile/profile-routing.module').then(m => m.ProfileRoutingModule)
+    },
+    {
+        path: 'employment',
+        loadChildren: () =>
+            import('modules/employment/employment-routing.module').then(m => m.EmploymentRoutingModule)
+    },
+    {
+        path: 'address',
+        loadChildren: () =>
+            import('modules/address/address-routing.module').then(m => m.AddressRoutingModule)
+    },
+    {
+        path: 'family',
+        loadChildren: () =>
+            import('modules/family/family-routing.module').then(m => m.FamilyRoutingModule)
+    },
+    {
         path: 'check-in',
         loadChildren: () =>
             import('modules/check-in/check-in-routing.module').then(m => m.CheckInRoutingModule),

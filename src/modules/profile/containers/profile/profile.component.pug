@@ -1,0 +1,36 @@
+sb-layout-profile
+    sb-dashboard-head(title="Profile", [hideBreadcrumbs]="false")
+    ul.list-group.list-group-flush(*ngIf='userService.user$ | async as user')
+        li.list-group-item
+            span.card-title Name
+            h4.card-text {{user.firstName + ' '+ user.lastName}}
+        li.list-group-item
+            span.card-title Marital Status
+            h4.card-text {{user.maritialStatus}}
+        li.list-group-item
+            span.card-title Birth Date
+            h4.card-text {{user.birthDate | date: 'dd MMM yyyy'}}
+        li.list-group-item
+            span.card-title Nationality
+            h4.card-text {{user.nationality}}
+        li.list-group-item
+            span.card-title Religion
+            h4.card-text {{user.religion}}
+        li.list-group-item
+            span.card-title Blood Type
+            h4.card-text {{user.bloodType}}
+        li.list-group-item
+            span.card-title No. NPWP
+            h4.card-text {{user.npwpNo}}
+        li.list-group-item
+            span.card-title No. KK
+            h4.card-text {{user.familyCardNo}}
+        li.list-group-item
+            span.card-title Personal Email
+            h4.card-text {{user.email}}
+        li.list-group-item
+            span.card-title Last Education
+            h4.card-text {{user.lastEducation}}
+        li.list-group-item
+            span.card-title Mobile Phone
+            h4.card-text {{user.mobilePhone}}

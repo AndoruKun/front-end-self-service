@@ -128,6 +128,7 @@ export class AddressFormComponent implements OnInit {
 
     submitProc() {
         let formData = new FormData()
+        let url = '/api/v1/address'
 
         let dataBody = {
             "addressId": typeof this.id == 'undefined' ? null : this.id,
@@ -143,13 +144,15 @@ export class AddressFormComponent implements OnInit {
 
         if (this.statusForm == "NEW")
             delete dataBody.addressId
+        else
+            url = "/api/v1/address/request/edit"
 
         formData.append("address", JSON.stringify(dataBody))
         formData.append("file", !(typeof this.files == null) ? this.files : null)
 
         this.methodServices.postData(formData
             , localStorage.getItem("Token"),
-            '/api/v1/address',
+            url,
             (result:any) => {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)

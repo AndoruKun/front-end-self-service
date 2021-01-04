@@ -1,5 +1,33 @@
 sb-layout-dashboard
     sb-dashboard-head(title='Dashboard', [hideBreadcrumbs]='false')
-    sb-dashboard-cards
-    sb-dashboard-charts
-    sb-dashboard-tables
+    div.row
+        div.col-6.mt-2
+            div.card.shadow-sm
+                div.card-body.text-center
+                    a.text-decoration-none([routerLink]="'/profile'")
+                        div
+                            fa-icon([icon]='["fas", "user"]')
+                        span.card-text Profile
+        div.col-6.mt-2
+            div.card.shadow-sm
+                div.card-body.text-center
+                    a.text-decoration-none([routerLink]="'/employment'")
+                        div
+                            fa-icon([icon]='["fas", "users"]')
+                        span.card-text Employment
+        div.col-6.mt-2
+            div.card.shadow-sm
+                div.card-body.text-center
+                    a.text-decoration-none([routerLink]="'/address'")
+                        div
+                            fa-icon([icon]='["fas", "map-marked-alt"]')
+                        span.card-text Address
+        div.col-6.mt-2
+            div.card.shadow-sm
+                div.card-body.text-center
+                    a.text-decoration-none([routerLink]="'/family'")
+                        div
+                            fa-icon([icon]='["fas", "house-user"]')
+                        span.card-text Family
+
+

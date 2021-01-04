@@ -10,8 +10,12 @@ import { LayoutTimesheetComponent } from './layout-timesheet/layout-timesheet.co
 import { LayoutApprovalComponent } from './layout-approval/layout-approval.component';
 import { LayoutSettingsComponent } from './layout-settings/layout-settings.component';
 import { LayoutReportsComponent } from './layout-reports/layout-reports.component';
+import { LayoutProfileComponent } from './layout-profile/layout-profile.component';
+import { LayoutEmploymentComponent } from './layout-employment/layout-employment.component';
+import { LayoutAddressComponent } from './layout-address/layout-address.component';
+import { LayoutFamilyComponent } from './layout-family/layout-family.component';
 
-export const layouts = [LayoutDashboardComponent, LayoutAuthComponent, LayoutErrorComponent, LayoutSelfServiceComponent, LayoutMyTeamComponent, LayoutCheckInComponent, LayoutCheckOutComponent, LayoutMyRequestComponent, LayoutTimesheetComponent, LayoutApprovalComponent, LayoutSettingsComponent, LayoutReportsComponent];
+export const layouts = [LayoutDashboardComponent, LayoutAuthComponent, LayoutErrorComponent, LayoutSelfServiceComponent, LayoutMyTeamComponent, LayoutCheckInComponent, LayoutCheckOutComponent, LayoutMyRequestComponent, LayoutTimesheetComponent, LayoutApprovalComponent, LayoutSettingsComponent, LayoutReportsComponent, LayoutProfileComponent, LayoutEmploymentComponent, LayoutAddressComponent, LayoutFamilyComponent];
 
 export * from './layout-dashboard/layout-dashboard.component';
 export * from './layout-auth/layout-auth.component';
@@ -25,3 +29,7 @@ export * from './layout-timesheet/layout-timesheet.component';
 export * from './layout-approval/layout-approval.component';
 export * from './layout-settings/layout-settings.component';
 export * from './layout-reports/layout-reports.component';
+export * from './layout-profile/layout-profile.component';
+export * from './layout-employment/layout-employment.component';
+export * from './layout-address/layout-address.component';
+export * from './layout-family/layout-family.component';

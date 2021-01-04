@@ -16,11 +16,6 @@ import { SBRouteData } from '@modules/navigation/models';
 export const ROUTES: Routes = [
     {
         path: '',
-        pathMatch: 'full',
-        redirectTo: 'my-team',
-    },
-    {
-        path: 'my-team',
         canActivate: [],
         component: myTeamContainers.MyTeamComponent,
         data: {

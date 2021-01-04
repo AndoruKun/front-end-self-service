@@ -232,8 +232,10 @@ export class FamilyFormComponent implements OnInit {
         let formData = new FormData();
         let birthDate = typeof this.modelDateBirth != 'undefined' ? this.methodServices.recorrectConvertDate(this.modelDateBirth) : null;
         let marriedDate = typeof this.modelMarriedDate != 'undefined' ? this.methodServices.recorrectConvertDate(this.modelMarriedDate) : null;
+        let url = '/api/v1/family'
 
         let dataBody = {
+            'familyId': typeof this.id != "undefined" ? this.id : null,
             'fullName': this.modelFamilyName,
             'birthDate': birthDate,
             'gender': this.modelGender,
@@ -253,12 +255,17 @@ export class FamilyFormComponent implements OnInit {
             'birthPlace': this.modelBirthPlace,
         };
 
+        if (this.statusForm == "NEW")
+            delete dataBody.familyId
+        else
+            url = '/api/v1/family/request'
+
         formData.append('family', JSON.stringify(dataBody));
         formData.append('file', !(typeof this.files == null) ? this.files : null);
 
         this.methodServices.postData(formData
             , localStorage.getItem('Token'),
-            '/api/v1/family',
+            url,
             (result:any) => {
                 if (result.error) {
                     this.methodServices.sweetAlert('error', result.error.message);

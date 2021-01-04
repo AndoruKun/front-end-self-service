@@ -1,0 +1,107 @@
+<sb-layout-family
+    ><sb-dashboard-head title="Family" [hideBreadcrumbs]="false"></sb-dashboard-head
+    ><ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
+        ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listDataFamily; let i = index"
+            ><ng-template ngbPanelHeader
+                ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>{{request.fullName}}</button></div></ng-template
+            ><ng-template ngbPanelContent
+                ><div class="row">
+                    <div class="col-12 mt-2"><button class="btn btn-outline-primary w-100" (click)="openModal(contentDetail, i)">See Detail</button></div>
+                </div></ng-template
+            ></ngb-panel
+        ><ng-http-loader spinner="sk-three-bounce"></ng-http-loader></ngb-accordion
+    ><ng-template #contentDetail let-modal
+        ><div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Family Detail</h4>
+            <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Close Modal')"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">New Name</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].fullName}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Birth Date</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].birthDate | date: "dd MMM yyyy"}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">Gender</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].gender}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Relationship</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].relationship}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">Alive Status</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].aliveStatus}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Blood Type</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].bloodType}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">Address</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].address}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">City</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].city}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">Zipcode</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].zipCode}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Marital Status</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].maritalStatus}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">No. KK</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].familyCardNo}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Personal Email</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].email}}</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="card-title">Nationality</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].nationality}}</span>
+                        </div>
+                        <div class="col-6">
+                            <div class="card-title">Mobile Phone</div>
+                            <span class="card-text text-break">{{listDataFamily[idxSelected].mobilePhone}}</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div></ng-template
+    ></sb-layout-family
+>

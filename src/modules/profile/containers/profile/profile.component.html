@@ -1,0 +1,49 @@
+<sb-layout-profile
+    ><sb-dashboard-head title="Profile" [hideBreadcrumbs]="false"></sb-dashboard-head>
+    <ul class="list-group list-group-flush" *ngIf="userService.user$ | async as user">
+        <li class="list-group-item">
+            <span class="card-title">Name</span>
+            <h4 class="card-text">{{user.firstName + ' '+ user.lastName}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Marital Status</span>
+            <h4 class="card-text">{{user.maritialStatus}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Birth Date</span>
+            <h4 class="card-text">{{user.birthDate | date: 'dd MMM yyyy'}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Nationality</span>
+            <h4 class="card-text">{{user.nationality}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Religion</span>
+            <h4 class="card-text">{{user.religion}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Blood Type</span>
+            <h4 class="card-text">{{user.bloodType}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">No. NPWP</span>
+            <h4 class="card-text">{{user.npwpNo}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">No. KK</span>
+            <h4 class="card-text">{{user.familyCardNo}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Personal Email</span>
+            <h4 class="card-text">{{user.email}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Last Education</span>
+            <h4 class="card-text">{{user.lastEducation}}</h4>
+        </li>
+        <li class="list-group-item">
+            <span class="card-title">Mobile Phone</span>
+            <h4 class="card-text">{{user.mobilePhone}}</h4>
+        </li>
+    </ul></sb-layout-profile
+>
