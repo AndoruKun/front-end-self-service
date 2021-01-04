@@ -46,4 +46,24 @@ export class CheckInComponent implements OnInit {
         this.idxSelected = idxData
         this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true, scrollable: true })
     }
+
+    cancelRequest(requestCancel:any) {
+        let params = 'requestNo='+requestCancel
+
+        this.methodServices.getUrlApi(
+            '/api/v1/attempdaily/request/cancel',
+            localStorage.getItem('Token'),
+            (res:any) => {
+                if (res.error)
+                    this.methodServices.sweetAlert('error', res.error.message)
+                else
+                    this.methodServices.sweetAlert('success', res.message, "Success", (result:any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
+            },
+            params
+        )
+    }
 }
