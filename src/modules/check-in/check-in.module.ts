@@ -21,6 +21,7 @@ import * as checkInGuards from './guards';
 
 /* Services */
 import * as checkInServices from './services';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import * as checkInServices from './services';
         NavigationModule,
         HttpClientModule,
         HttpClientJsonpModule,
+        NgHttpLoaderModule.forRoot()
     ],
     providers: [...checkInServices.services, ...checkInGuards.guards],
     declarations: [...checkInContainers.containers, ...checkInComponents.components],

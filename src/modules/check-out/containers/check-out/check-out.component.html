@@ -14,5 +14,6 @@
         </div>
         <div [ngClass]='"col-12"'><label for="remark">Remark</label><input [ngClass]='"form-control"' id="remark" type="text" required (change)='changeEvent($event, "remark" ,"required")' /></div>
         <div [ngClass]='"col-12 mt-3"'><button [ngClass]='"btn btn-primary w-100"' type="button" [disabled]="disabledBtn" (click)="submitProc()">Submit</button></div>
-    </div></sb-layout-check-out
->
+    </div>
+    <ng-http-loader spinner="sk-three-bounce"></ng-http-loader
+></sb-layout-check-out>

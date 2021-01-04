@@ -20,3 +20,4 @@ sb-layout-check-out
             input([ngClass]='"form-control"', id='remark', type="text", required, (change)='changeEvent($event, "remark" ,"required")')
         div([ngClass]='"col-12 mt-3"')
             button([ngClass]='"btn btn-primary w-100"', type="button", [disabled]="disabledBtn", (click)="submitProc()") Submit
+    ng-http-loader(spinner="sk-three-bounce")

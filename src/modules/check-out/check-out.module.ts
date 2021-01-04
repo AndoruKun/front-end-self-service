@@ -21,6 +21,7 @@ import * as checkOutGuards from './guards';
 
 /* Services */
 import * as checkOutServices from './services';
+import { NgHttpLoaderModule } from 'ng-http-loader';
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import * as checkOutServices from './services';
         NavigationModule,
         HttpClientModule,
         HttpClientJsonpModule,
+        NgHttpLoaderModule.forRoot()
     ],
     providers: [...checkOutServices.services, ...checkOutGuards.guards],
     declarations: [...checkOutContainers.containers, ...checkOutComponents.components],
