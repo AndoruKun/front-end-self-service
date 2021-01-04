@@ -43,7 +43,7 @@
                     ><div class="row">
                         <div class="col-12 col-md-6 mb-2">
                             <label for="maritalStatus">Marital Status</label
-                            ><select class="form-control" id="maritalStatus" [value]="user.maritialStatus" (change)="changeEvent($event, 'maritalStatus')">
+                            ><select class="form-control" id="maritalStatus" [value]="modelMaritalStatus" (change)="changeEvent($event, 'maritalStatus')">
                                 <option *ngFor="let status of maritalStatus" [value]="status">{{status}}</option>
                             </select>
                         </div>
@@ -56,16 +56,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 mb-2"><label for="npwp">No. NPWP</label><input class="form-control" id="npwp" type="text" [value]="user.npwpNo" (change)="changeEvent($event, 'npwp')" /></div>
-                        <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" [value]="user.familyCardNo" (change)="changeEvent($event, 'kk')" /></div>
-                        <div class="col-12 col-md-6 mb-2"><label for="email">Personal Email</label><input class="form-control" id="email" type="text" [disabled]="true" [value]="user.email" (change)="changeEvent($event, 'email')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="npwp">No. NPWP</label><input class="form-control" id="npwp" type="text" [value]="modelNoNPWP" (change)="changeEvent($event, 'npwp')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" [value]="modelNoKK" (change)="changeEvent($event, 'kk')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="email">Personal Email</label><input class="form-control" id="email" type="text" [disabled]="true" [value]="modelPersonalEmail" (change)="changeEvent($event, 'email')" /></div>
                         <div class="col-12 col-md-6 mb-2">
                             <label for="lastEducation">Marital Status</label
-                            ><select class="form-control" id="lastEducation" [value]="user.lastEducation" (change)="changeEvent($event, 'lastEducation')">
+                            ><select class="form-control" id="lastEducation" [value]="modelLastEducation" (change)="changeEvent($event, 'lastEducation')">
                                 <option *ngFor="let edu of education" [value]="edu">{{edu}}</option>
                             </select>
                         </div>
-                        <div class="col-12 col-md-6 mb-2"><label for="phone">Mobile Phone</label><input class="form-control" id="phone" type="text" [value]="user.mobilePhone" (change)="changeEvent($event, 'phone')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="phone">Mobile Phone</label><input class="form-control" id="phone" type="text" [value]="modelMobilePhone" (change)="changeEvent($event, 'phone')" /></div>
                         <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks for the benefit claim..." type="text" (change)="changeEvent($event, 'remark')" /></div>
                         <div class="form-group col-12"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
                         <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>

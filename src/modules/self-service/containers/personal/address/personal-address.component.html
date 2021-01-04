@@ -17,7 +17,7 @@
                     <div>{{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}</div>
                 </div>
                 <div class="col-12 mt-2">
-                    <button class="mt-2 btn btn-primary btn-labebed w-100" (click)="edit(request.addressId)">
+                    <button class="mt-2 btn btn-primary btn-labebed w-100" (click)="edit(request.addressId)" [disabled]="request.status === 'PENDING' ? true : false">
                         <span class="pr-2"><fa-icon [icon]='["fas", "edit"]'></fa-icon></span><span>Edit</span></button
                     ><button class="mt-2 btn btn-primary btn-labebed w-100" (click)="downloadFile(request.attachment)">
                         <span class="pr-2"><fa-icon [icon]='["fas", "cloud-download-alt"]'></fa-icon></span><span>Download</span>

@@ -33,7 +33,7 @@ div.d-flex.row
                     div.row
                         div.col-12.col-md-6.mb-2
                             label(for="maritalStatus") Marital Status
-                            select#maritalStatus.form-control([value]="user.maritialStatus", (change)="changeEvent($event, 'maritalStatus')")
+                            select#maritalStatus.form-control([value]="modelMaritalStatus", (change)="changeEvent($event, 'maritalStatus')")
                                 option(*ngFor="let status of maritalStatus", [value]='status') {{status}}
                         div.col-12.col-md-6.mb-2
                             label(for="birthDate") Birth Date
@@ -44,20 +44,20 @@ div.d-flex.row
                                         fa-icon([icon]='["fas", "calendar-alt"]')
                         div.col-12.col-md-6.mb-2
                             label(for="npwp") No. NPWP
-                            input.form-control#npwp(type="text", [value]="user.npwpNo", (change)="changeEvent($event, 'npwp')")
+                            input.form-control#npwp(type="text", [value]="modelNoNPWP", (change)="changeEvent($event, 'npwp')")
                         div.col-12.col-md-6.mb-2
                             label(for="kk") No. KK
-                            input.form-control#kk(type="text", [value]="user.familyCardNo", (change)="changeEvent($event, 'kk')")
+                            input.form-control#kk(type="text", [value]="modelNoKK", (change)="changeEvent($event, 'kk')")
                         div.col-12.col-md-6.mb-2
                             label(for="email") Personal Email
-                            input.form-control#email(type="text", [disabled]="true", [value]="user.email", (change)="changeEvent($event, 'email')")
+                            input.form-control#email(type="text", [disabled]="true", [value]="modelPersonalEmail", (change)="changeEvent($event, 'email')")
                         div.col-12.col-md-6.mb-2
                             label(for="lastEducation") Marital Status
-                            select#lastEducation.form-control([value]="user.lastEducation", (change)="changeEvent($event, 'lastEducation')")
+                            select#lastEducation.form-control([value]="modelLastEducation", (change)="changeEvent($event, 'lastEducation')")
                                 option(*ngFor="let edu of education", [value]='edu') {{edu}}
                         div.col-12.col-md-6.mb-2
                             label(for="phone") Mobile Phone
-                            input.form-control#phone(type="text", [value]="user.mobilePhone", (change)="changeEvent($event, 'phone')")
+                            input.form-control#phone(type="text", [value]="modelMobilePhone", (change)="changeEvent($event, 'phone')")
                         div.col-12.col-md-6.mb-2
                             label(for="remark") Remark
                             input.form-control#remark(placeholder="Type remarks for the benefit claim...", type="text", (change)="changeEvent($event, 'remark')")

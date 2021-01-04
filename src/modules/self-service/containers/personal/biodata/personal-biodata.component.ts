@@ -53,6 +53,12 @@ export class PersonalBiodataComponent implements OnInit {
             this.user = user
             let userBirthDate = user.birthDate.split("-")
             this.birthDate = new NgbDate(parseInt(userBirthDate[0]), parseInt(userBirthDate[1]), parseInt(userBirthDate[2]))
+            this.modelMaritalStatus = user.maritialStatus
+            this.modelNoNPWP = user.npwpNo
+            this.modelNoKK = user.familyCardNo
+            this.modelLastEducation = user.lastEducation
+            this.modelMobilePhone = user.mobilePhone
+            this.modelPersonalEmail = user.email
         })
 
     }

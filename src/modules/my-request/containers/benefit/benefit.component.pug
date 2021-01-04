@@ -1,5 +1,5 @@
 sb-dashboard-head(title='My Request', [hideBreadcrumbs]='false')
-ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1", *ngIf="listRequestBenefit")
+ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
     ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestBenefit; let i = index")
         ng-template(ngbPanelHeader)
             div.d-flex.align-items-center.justify-content-between

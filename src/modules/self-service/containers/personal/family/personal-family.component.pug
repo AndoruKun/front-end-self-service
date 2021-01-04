@@ -9,7 +9,7 @@ ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
         ng-template(ngbPanelContent)
             div.row
                 div.col-12.mt-2
-                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="edit(request.familyId)")
+                    button.mt-2.btn.btn-primary.btn-labebed.w-100((click)="edit(request.familyId)", [disabled]="request.status === 'PENDING' ? true : false")
                         span.pr-2
                             fa-icon([icon]='["fas", "edit"]')
                         span Edit
