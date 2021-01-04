@@ -28,7 +28,7 @@ div.row
         input.form-control#remark(placeholder="Type remarks for the benefit claim...", type="text", (change)="changeEvent($event, 'remark')")
     div.form-group.col-12
         label(for="attachDoc") Attach Supporting Document
-        input.form-control-file#attachDoc(type="file", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
+        input.form-control-file#attachDoc(type="file", accept="image/*, .pdf", #fileUpload, (change)="changeEvent($event, 'uploadFile')")
     div.col-12.mb-2
         button.btn.btn-primary.w-100(type="button", (click)="submitProc()", [disabled]="disabledBtn") Submit
     ng-http-loader(spinner="sk-three-bounce")

@@ -157,7 +157,7 @@ export class AddressFormComponent implements OnInit {
                 if (result.error)
                     this.methodServices.sweetAlert('error', result.error.message)
                 else {
-                    this.methodServices.sweetAlert('success', result.message, (result: any) => {
+                    this.methodServices.sweetAlert('success', result.message, "Success",(result: any) => {
                         if (result.value) {
                             this.router.navigate(["/self-service/personal/address"]);
                         }
