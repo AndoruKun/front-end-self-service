@@ -65,7 +65,7 @@
     <div class="col-12 col-md-6 mb-2"><label for="phone">Phone</label><input class="form-control" id="phone" type="text" placeholder="e.g. 02145XXX" (change)="changeEvent($event, 'phone')" [value]="modelPhone" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="email">Email</label><input class="form-control" id="email" type="text" placeholder="Enter Email" (change)="changeEvent($event, 'email')" [value]="modelEmail" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks" type="text" (change)="changeEvent($event, 'remark')" /></div>
-    <div class="form-group col-12 mb-2"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
+    <div class="form-group col-12 mb-2"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
     <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>
     <ng-http-loader spinner="sk-three-bounce"></ng-http-loader>
 </div>

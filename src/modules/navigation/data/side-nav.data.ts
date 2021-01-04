@@ -135,7 +135,7 @@ export const sideNavItems: SideNavItems = {
         icon: 'user-friends',
         text: 'My Team',
         link: '/my-team',
-        authorization: 'EMPLOYEE'
+        authorization: 'MANAGER'
     },
     check_in: {
         icon: 'sign-in-alt',

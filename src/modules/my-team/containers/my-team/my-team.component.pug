@@ -7,16 +7,10 @@ sb-layout-my-team
                     button.btn.btn-link.p-0(ngbPanelToggle) {{team.name}}
             ng-template(ngbPanelContent)
                 div.row
-                    div.col-6.line.justify-content-center.align-content-center
-                        div Position :
-                        div {{team.position}}
-                        div Employee Status :
-                        div {{team.employeeStatus}}
-                        div Supervisor :
-                        div {{team.directSupervisor}}
-                    div.col-6.text-right
-                        div Start Date :
-                        div {{team.startDate | date: "dd MMM yyyy"}}
-                        div End Date :
-                        div {{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}
+                    div.col-12.text-break
+                        div Position : {{team.position}}
+                        div Employee Status : {{team.employeeStatus}}
+                        div Supervisor : {{team.directSupervisor}}
+                        div Start Date : {{team.startDate | date: "dd MMM yyyy"}}
+                        div End Date : {{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}
         ng-http-loader(spinner="sk-three-bounce")

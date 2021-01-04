@@ -16,7 +16,7 @@ import { SBRouteData } from '@modules/navigation/models';
 export const ROUTES: Routes = [
     {
         path: '',
-        canActivate: [],
+        canActivate: [myTeamGuards.MyTeamGuard],
         component: myTeamContainers.MyTeamComponent,
         data: {
             title: 'My Team - SB Admin Angular',

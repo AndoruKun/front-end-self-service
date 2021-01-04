@@ -67,7 +67,7 @@
                         </div>
                         <div class="col-12 col-md-6 mb-2"><label for="phone">Mobile Phone</label><input class="form-control" id="phone" type="text" [value]="user.mobilePhone" (change)="changeEvent($event, 'phone')" /></div>
                         <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks for the benefit claim..." type="text" (change)="changeEvent($event, 'remark')" /></div>
-                        <div class="form-group col-12"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
+                        <div class="form-group col-12"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
                         <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>
                     </div></ng-template
                 >

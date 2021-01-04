@@ -4,7 +4,7 @@ sb-layout-settings
     ul.list-group.list-group-flush(*ngIf='userService.user$ | async as user')
         li.list-group-item
             div.row
-                div.col-6
+                div.col-6.text-break
                     h5 Name
                     h3 {{user.firstName + " " + user.lastName}}
                 div.col-6
@@ -12,7 +12,7 @@ sb-layout-settings
                     h3 {{user.birthDate | date: 'dd MMM yyyy'}}
         li.list-group-item
             div.row
-                div.col-6
+                div.col-6.text-break
                     h5 Email
                     h3 {{user.email}}
                 div.col-6

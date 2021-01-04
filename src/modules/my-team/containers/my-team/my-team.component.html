@@ -6,19 +6,12 @@
                 ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>{{team.name}}</button></div></ng-template
             ><ng-template ngbPanelContent
                 ><div class="row">
-                    <div class="col-6 line justify-content-center align-content-center">
-                        <div>Position :</div>
-                        <div>{{team.position}}</div>
-                        <div>Employee Status :</div>
-                        <div>{{team.employeeStatus}}</div>
-                        <div>Supervisor :</div>
-                        <div>{{team.directSupervisor}}</div>
-                    </div>
-                    <div class="col-6 text-right">
-                        <div>Start Date :</div>
-                        <div>{{team.startDate | date: "dd MMM yyyy"}}</div>
-                        <div>End Date :</div>
-                        <div>{{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}</div>
+                    <div class="col-12 text-break">
+                        <div>Position : {{team.position}}</div>
+                        <div>Employee Status : {{team.employeeStatus}}</div>
+                        <div>Supervisor : {{team.directSupervisor}}</div>
+                        <div>Start Date : {{team.startDate | date: "dd MMM yyyy"}}</div>
+                        <div>End Date : {{team.endDate == '-' ? '- ' : team.endDate | date: "dd MMM yyyy"}}</div>
                     </div>
                 </div></ng-template
             ></ngb-panel
