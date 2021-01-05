@@ -14,7 +14,7 @@
                     <div>Request Date :</div>
                     <div>{{request.requestDateTime | date: "dd MMM yyyy"}}</div>
                 </div>
-                <div class="col-6 text-right">
+                <div class="col-6 text-right" *ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'">
                     <div>Approve Date :</div>
                     <div>{{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}</div>
                 </div>

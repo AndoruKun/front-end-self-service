@@ -239,19 +239,19 @@ export const sideNavItems: SideNavItems = {
         icon: 'user-clock',
         text: 'Absence',
         link: '/reports/absence',
-        authorization: 'MANAGER'
+        authorization: 'HRADMIN,MANAGER'
     },
     report_benefit: {
         icon: 'user-plus',
         text: 'Benefit',
         link: '/reports/benefit',
-        authorization: 'MANAGER'
+        authorization: 'HRADMIN,MANAGER'
     },
     report_checkin_checkout: {
         icon: 'clock',
         text: 'Check In / Out',
         link: '/reports/checkin-out',
-        authorization: 'MANAGER',
+        authorization: 'HRADMIN,MANAGER',
     },
     report_personal: {
         icon: 'user',

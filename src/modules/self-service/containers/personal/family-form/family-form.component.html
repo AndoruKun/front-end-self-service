@@ -1,23 +1,23 @@
 <sb-dashboard-head title="Form"></sb-dashboard-head>
 <div class="row">
-    <div class="col-12 col-md-6 mb-2"><label for="familyName">Family Name</label><input class="form-control" id="familyName" type="text" placeholder="Enter Family Name" (change)="changeEvent($event, 'familyName')" [value]="modelFamilyName" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="familyName">Family Name</label><input class="form-control" id="familyName" type="text" placeholder="Enter Family Name" (change)="changeEvent($event, 'familyName')" [(ngModel)]="modelFamilyName" /></div>
     <div class="col-12 col-md-6 mb-2">
         <label for="familyGender">Gender</label
-        ><select class="form-control" id="familyGender" (change)="changeEvent($event, 'familyGender')" [value]="modelGender">
+        ><select class="form-control" id="familyGender" (change)="changeEvent($event, 'familyGender')" [(ngModel)]="modelGender">
             <option *ngFor="let gender of familyGender" [value]="gender">{{gender}}</option>
         </select>
     </div>
     <div class="col-12 col-md-6 mb-2">
         <label for="familyRelationship">Family Relationship</label
-        ><select class="form-control" id="familyRelationship" (change)="changeEvent($event, 'familyRelationship')" [value]="modelRelationship">
+        ><select class="form-control" id="familyRelationship" (change)="changeEvent($event, 'familyRelationship')" [(ngModel)]="modelRelationship">
             <option *ngFor="let relationship of familyRelationship" [value]="relationship">{{relationship}}</option>
         </select>
     </div>
-    <div class="col-12 col-md-6 mb-2"><label for="familyBirth">Family Birth Place</label><input class="form-control" id="familyBirth" type="text" placeholder="Enter Place of Birth" (change)="changeEvent($event, 'familyBirth')" [value]="modelBirthPlace" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="familyBirth">Family Birth Place</label><input class="form-control" id="familyBirth" type="text" placeholder="Enter Place of Birth" (change)="changeEvent($event, 'familyBirth')" [(ngModel)]="modelBirthPlace" /></div>
     <div class="col-12 col-md-6 mb-2">
         <label for="birthDate">Family Birth of Date</label>
         <div class="input-group">
-            <input class="form-control" id="birthDate" ngbDatepicker #date="ngbDatepicker" [(ngModel)]="modelDateBirth" (input)="modelDateBirth = validateInput(modelDateBirth, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="modelDateBirth!" tabindex="-1" />
+            <input class="form-control" id="birthDate" ngbDatepicker placeholder="yyyy-mm-dd" #date="ngbDatepicker" [(ngModel)]="modelDateBirth" (input)="modelDateBirth = validateInput(modelDateBirth, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="modelDateBirth!" tabindex="-1" />
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" (click)="date.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
             </div>
@@ -25,45 +25,45 @@
     </div>
     <div class="col-12 col-md-6 mb-2">
         <label for="nationality">Nationality</label
-        ><select class="form-control" id="nationality" (change)="changeEvent($event, 'nationality')" [value]="modelNationality">
+        ><select class="form-control" id="nationality" (change)="changeEvent($event, 'nationality')" [(ngModel)]="modelNationality">
             <option *ngFor="let nationality of nationalitys" [value]="nationality">{{nationality}}</option>
         </select>
     </div>
     <div class="col-12 col-md-6 mb-2">
         <label for="bloodType">Family Blood Type</label
-        ><select class="form-control" id="bloodType" (change)="changeEvent($event, 'bloodType')" [value]="modelBloodType">
+        ><select class="form-control" id="bloodType" (change)="changeEvent($event, 'bloodType')" [(ngModel)]="modelBloodType">
             <option *ngFor="let bloodType of bloodTypes" [value]="bloodType">{{bloodType}}</option>
         </select>
     </div>
     <div class="col-12 col-md-6 mb-2">
         <label for="aliveStatus">Alive Status</label
-        ><select class="form-control" id="aliveStatus" (change)="changeEvent($event, 'aliveStatus')" [value]="modelAliveStatus">
+        ><select class="form-control" id="aliveStatus" (change)="changeEvent($event, 'aliveStatus')" [(ngModel)]="modelAliveStatus">
             <option *ngFor="let status of aliveStatus" [value]="status">{{status}}</option>
         </select>
     </div>
-    <div class="col-12 col-md-6 mb-2"><label for="occupation">Family Occupation</label><input class="form-control" id="occupation" type="text" placeholder="Occupation" (change)="changeEvent($event, 'occupation')" [value]="modelOccupation" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="occupation">Family Occupation</label><input class="form-control" id="occupation" type="text" placeholder="Occupation" (change)="changeEvent($event, 'occupation')" [(ngModel)]="modelOccupation" /></div>
     <div class="col-12 col-md-6 mb-2">
         <label for="maritalStatus">Marital Status</label
-        ><select class="form-control" id="maritalStatus" (change)="changeEvent($event, 'maritalStatus')" [value]="modelMaritalStatus">
+        ><select class="form-control" id="maritalStatus" (change)="changeEvent($event, 'maritalStatus')" [(ngModel)]="modelMaritalStatus">
             <option *ngFor="let status of maritalStatus" [value]="status">{{status}}</option>
         </select>
     </div>
-    <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" (change)="changeEvent($event, 'kk')" [value]="modelKK" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="nik">No. NIK</label><input class="form-control" id="nik" type="text" (change)="changeEvent($event, 'nik')" [value]="modelNik" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="address">Address</label><textarea class="form-control" id="address" placeholder="Enter address detail" (change)="changeEvent($event, 'address')" [value]="modelAddress"></textarea></div>
+    <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" (change)="changeEvent($event, 'kk')" [(ngModel)]="modelKK" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="nik">No. NIK</label><input class="form-control" id="nik" type="text" (change)="changeEvent($event, 'nik')" [(ngModel)]="modelNik" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="address">Address</label><textarea class="form-control" id="address" placeholder="Enter address detail" (change)="changeEvent($event, 'address')" [(ngModel)]="modelAddress"></textarea></div>
     <div class="col-12 col-md-6 mb-2">
         <label for="marriedDate">Married Date</label>
         <div class="input-group">
-            <input class="form-control" id="marriedDate" ngbDatepicker #date="ngbDatepicker" [(ngModel)]="modelMarriedDate" (input)="modelMarriedDate = validateInput(modelMarriedDate, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="modelMarriedDate!" tabindex="-1" [minDate]="{year: 1980, month: 1, day: 1}" />
+            <input class="form-control" id="marriedDate" ngbDatepicker placeholder="yyyy-mm-dd" #date="ngbDatepicker" [(ngModel)]="modelMarriedDate" (input)="modelMarriedDate = validateInput(modelMarriedDate, date.value())" [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [startDate]="modelMarriedDate!" tabindex="-1" [minDate]="{year: 1980, month: 1, day: 1}" />
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" (click)="date.toggle()"><fa-icon [icon]='["fas", "calendar-alt"]'></fa-icon></button>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-6 mb-2"><label for="city">City</label><input class="form-control" id="city" type="text" placeholder="Enter City" (change)="changeEvent($event, 'city')" [value]="modelCity" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="zipCode">ZIP Code</label><input class="form-control" id="zipCode" type="text" placeholder="e.g. 4546" (change)="changeEvent($event, 'zipCode')" [value]="modelZipcode" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="phone">Phone</label><input class="form-control" id="phone" type="text" placeholder="e.g. 02145XXX" (change)="changeEvent($event, 'phone')" [value]="modelPhone" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="email">Email</label><input class="form-control" id="email" type="text" placeholder="Enter Email" (change)="changeEvent($event, 'email')" [value]="modelEmail" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="city">City</label><input class="form-control" id="city" type="text" placeholder="Enter City" (change)="changeEvent($event, 'city')" [(ngModel)]="modelCity" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="zipCode">ZIP Code</label><input class="form-control" id="zipCode" type="text" placeholder="e.g. 4546" (change)="changeEvent($event, 'zipCode')" [(ngModel)]="modelZipcode" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="phone">Phone</label><input class="form-control" id="phone" type="text" placeholder="e.g. 02145XXX" (change)="changeEvent($event, 'phone')" [(ngModel)]="modelPhone" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="email">Email</label><input class="form-control" id="email" type="text" placeholder="Enter Email" (change)="changeEvent($event, 'email')" [(ngModel)]="modelEmail" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks" type="text" (change)="changeEvent($event, 'remark')" /></div>
     <div class="form-group col-12 mb-2"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
     <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>

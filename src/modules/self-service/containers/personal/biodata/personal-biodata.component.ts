@@ -16,14 +16,11 @@ export class PersonalBiodataComponent implements OnInit {
     user:any
     personalData:any
     maritalStatus= [
-        '-- Select --',
         'Married',
         'Unmarried',
-        'Widow (Female)',
-        'Widow (Male)'
+        'Single',
     ]
     education = [
-        '-- Select --',
         'SD',
         'SMP',
         'SMA',
@@ -63,8 +60,8 @@ export class PersonalBiodataComponent implements OnInit {
 
     }
     ngOnInit() {
-        this.modelMaritalStatus = "-- Select --"
-        this.modelLastEducation = "-- Select --"
+        this.modelMaritalStatus = "Single"
+        this.modelLastEducation = "SD"
 
     }
 
@@ -141,7 +138,8 @@ export class PersonalBiodataComponent implements OnInit {
             "npwpNo":this.modelNoNPWP,
             "bpjsNo":this.user.bpjsNo,
             "religion":this.user.religion,
-            "mobilePhone":this.modelMobilePhone
+            "mobilePhone":this.modelMobilePhone,
+            "remark": this.modelRemark
         }
 
         formData.append("employee", JSON.stringify(dataBody))

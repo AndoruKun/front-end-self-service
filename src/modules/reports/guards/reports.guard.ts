@@ -12,11 +12,15 @@ export class ReportsGuard implements CanActivate {
     canActivate(route:ActivatedRouteSnapshot,state:RouterStateSnapshot): Observable<boolean>|Promise<boolean>|boolean {
         let getUrl = state.url.split('/')
         let access:boolean = false
-        if (getUrl.indexOf('reports') >= 0 && (this.methodServices.checkAccessAuthorization('HRADMIN') || this.methodServices.checkAccessAuthorization('MANAGER'))) {
+        if (getUrl.indexOf('reports') >= 0
+            && (this.methodServices.checkAccessAuthorization('HRADMIN')
+                || this.methodServices.checkAccessAuthorization('MANAGER'))) {
             if (getUrl.indexOf('personal') >= 0 && this.methodServices.checkAccessAuthorization('HRADMIN'))
                 access = true
 
-            if (getUrl.indexOf('personal') == -1 && this.methodServices.checkAccessAuthorization('MANAGER'))
+            if (getUrl.indexOf('personal') == -1
+                && (this.methodServices.checkAccessAuthorization('MANAGER')
+                    || this.methodServices.checkAccessAuthorization('HRADMIN')))
                 access = true
 
             if (!access) {

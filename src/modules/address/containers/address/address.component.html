@@ -4,7 +4,7 @@
     <ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
         ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAddress; let i = index"
             ><ng-template ngbPanelHeader
-                ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>Address {{request.primaryFlag ? 'Primary' : i+1}}</button></div></ng-template
+                ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>Address {{request.address}}</button></div></ng-template
             ><ng-template ngbPanelContent
                 ><div class="row">
                     <div class="col-12 mt-2"><button class="btn btn-outline-primary w-100" (click)="openModal(contentDetail, i)">See Detail</button></div>

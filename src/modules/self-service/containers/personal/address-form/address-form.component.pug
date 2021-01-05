@@ -2,7 +2,7 @@ sb-dashboard-head(title='Add Address', [hideBreadcrumbs]=false)
 div.row
     div.col-12.col-md-6.mb-2
         label(for="addressType") Address Type
-        select#addressType.form-control((change)="changeEvent($event, 'addressType')", [value]="modelAddressType")
+        select#addressType.form-control((change)="changeEvent($event, 'addressType')", [(ngModel)]="modelAddressType")
             option(*ngFor="let type of addressType", [value]='type') {{type}}
     div.col-12.col-md-6.mb-2
         div.col-12.px-0
@@ -13,23 +13,23 @@ div.row
                 label.custom-control-label(for="primaryFlag")
     div.col-12.col-md-6.mb-2
         label(for="address") Address
-        textarea.form-control#address(placeholder="Enter your address detail", (change)="changeEvent($event, 'address')", [value]="modelAddress")
+        textarea.form-control#address(placeholder="Enter your address detail", (change)="changeEvent($event, 'address')", [(ngModel)]="modelAddress")
     div.col-12.col-md-6.mb-2
         label(for="city") City
-        input.form-control#city(type="text", placeholder="Enter City", (change)="changeEvent($event, 'city')", [value]="modelCity")
+        input.form-control#city(type="text", placeholder="Enter City", (change)="changeEvent($event, 'city')", [(ngModel)]="modelCity")
     div.col-12.col-md-6.mb-2
         label(for="country") Country
-        input.form-control#country(type="text", placeholder="Enter Country e.g. Indonesia", (change)="changeEvent($event, 'country')", [value]="modelCountry")
+        input.form-control#country(type="text", placeholder="Enter Country e.g. Indonesia", (change)="changeEvent($event, 'country')", [(ngModel)]="modelCountry")
     div.col-12.col-md-6.mb-2
         label(for="zipCode") ZIP Code
-        input.form-control#zipCode(type="text", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [value]="modelZipcode")
+        input.form-control#zipCode(type="text", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [(ngModel)]="modelZipcode")
     div.col-12.col-md-6.mb-2
         label(for="stayStatus") Stay Status
-        select#stayStatus.form-control((change)="changeEvent($event, 'stayStatus')", [value]="modelStatuStay")
+        select#stayStatus.form-control((change)="changeEvent($event, 'stayStatus')", [(ngModel)]="modelStatuStay")
             option(*ngFor="let status of stayStatus", [value]='status') {{status}}
     div.col-12.col-md-6.mb-2
         label(for="province") Province
-        input.form-control#province(type="text", placeholder="Enter Province", (change)="changeEvent($event, 'province')", [value]="modelProvince")
+        input.form-control#province(type="text", placeholder="Enter Province", (change)="changeEvent($event, 'province')", [(ngModel)]="modelProvince")
     div.col-12.mb-2
         label(for="remark") Remark
         input.form-control#remark(placeholder="Type remarks", type="text", (change)="changeEvent($event, 'remark')")

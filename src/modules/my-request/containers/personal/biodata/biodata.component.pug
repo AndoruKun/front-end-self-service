@@ -10,12 +10,12 @@ ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
                 div.col-12
                     span([ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}") {{request.status}}
                 div.col-6.line.justify-content-center.align-content-center
-                    div Remark : {{request.remark}}
+                    div(*ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'") Remark : {{request.remark}}
                     div Request Date :
                     div {{request.requestDatetime | date: "dd MMM yyyy"}}
-                    div Approved By :
-                    div {{request.hradminName == null ? '-' : request.hradminName}}
-                div.col-6.text-right
+                    div(*ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'") Approved By :
+                    div(*ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'") {{request.hradminName == null ? '-' : request.hradminName}}
+                div.col-6.text-right(*ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'")
                     div Approve Date :
                     div {{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}
                 div.col-12.mt-2

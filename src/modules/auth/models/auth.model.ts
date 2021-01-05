@@ -13,5 +13,6 @@ export interface User {
     bloodType:any,
     nationality:any,
     bpjsNo:any,
-    religion:any
+    religion:any,
+    profilePicture:any
 }

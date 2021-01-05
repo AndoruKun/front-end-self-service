@@ -3,7 +3,7 @@ ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
     ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestBiodata; let i = index")
         ng-template(ngbPanelHeader)
             div.d-flex.align-items-center.justify-content-between
-                button.btn.btn-link.p-0(ngbPanelToggle) {{request.requestNo}}
+                button.btn.btn-link.p-0(ngbPanelToggle) {{request.employeeName + " - " + request.requestNo}}
                 h5.m-0 {{request.requestDateTime | date: "dd MMM yyyy hh:mm"}}
         ng-template(ngbPanelContent)
             div.row

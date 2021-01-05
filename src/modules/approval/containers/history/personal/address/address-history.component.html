@@ -3,7 +3,7 @@
     ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listRequestAddress; let i = index"
         ><ng-template ngbPanelHeader
             ><div class="d-flex align-items-center justify-content-between">
-                <button class="btn btn-link p-0" ngbPanelToggle>{{request.requestNo}}</button>
+                <button class="btn btn-link p-0" ngbPanelToggle>{{request.employeeName + " - " + request.requestNo}}</button>
                 <h5 class="m-0">{{request.requestDateTime | date: "dd MMM yyyy hh:mm"}}</h5>
             </div></ng-template
         ><ng-template ngbPanelContent

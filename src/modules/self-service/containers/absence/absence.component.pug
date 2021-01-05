@@ -4,7 +4,7 @@ div.row
         label(for="typeAbsence") Absence Type
         select.form-control#typeAbsence(#contentType, (change)="changeEvent($event,'typeAbsence')", [value]="modelContentType")
             option([value]="'sakit'") Sakit
-            option([value]="'izin'") Izin
+            option([value]="'cuti'") Cuti
     div.col-12.col-md-6.mb-2
         label(for="type") Type
         select.form-control#type(#absenceType, (change)="changeEvent($event, 'type')")

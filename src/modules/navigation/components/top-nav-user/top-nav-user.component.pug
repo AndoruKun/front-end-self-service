@@ -11,7 +11,8 @@ li.nav-item.dropdown.dropdown-user.no-caret(
         aria-haspopup='true',
         aria-expanded='false'
     )
-        fa-icon([icon]='["fas", "user"]')
+        fa-icon([icon]='["fas", "user"]', *ngIf="user.profilePicture == '-'")
+        img#profile-picture([src]="user.profilePicture", *ngIf="user.profilePicture != '-'")
     .dropdown-menu.dropdown-menu-right(
         ngbDropdownMenu,
         aria-labelledby='dropdownUser'

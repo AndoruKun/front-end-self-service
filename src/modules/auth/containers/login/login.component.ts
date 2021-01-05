@@ -18,8 +18,8 @@ export class LoginComponent implements OnInit {
 
     constructor(
         public methodService:MethodServices) {
-        this.user_email = this.modelEmail
-        this.user_password = this.modelPassword
+        this.user_email = typeof this.modelEmail != "undefined" ? this.modelEmail : ""
+        this.user_password = typeof this.modelPassword != "undefined" ? this.modelPassword : ""
         this.remember_me = this.modelRememberMe
     }
 

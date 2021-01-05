@@ -72,4 +72,27 @@ export class FamilyComponent implements OnInit {
             }
         )
     }
+    rejectedRequest(requestApproval:any) {
+        let dataBody = {
+            'remark': this.modelRemark,
+            'requestNo': requestApproval,
+            'status': "REJECTED"
+        }
+
+        this.methodServices.postData(
+            dataBody,
+            localStorage.getItem('Token'),
+            '/api/v1/family/request/approve',
+            (res: any) => {
+                if (res.error)
+                    this.methodServices.sweetAlert('error', res.error.message)
+                else
+                    this.methodServices.sweetAlert('success', res.message, "Success", (result: any) => {
+                        if (result.value) {
+                            location.reload()
+                        }
+                    })
+            }
+        )
+    }
 }

@@ -15,8 +15,7 @@ export class FamilyFormComponent implements OnInit {
         '-- Select --',
         'Married',
         'Unmarried',
-        'Widow (Female)',
-        'Widow (Male)',
+        'Single',
     ];
     familyGender = [
         '-- Select --',

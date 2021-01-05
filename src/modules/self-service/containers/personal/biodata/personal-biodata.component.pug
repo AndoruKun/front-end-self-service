@@ -52,7 +52,7 @@ div.d-flex.row
                             label(for="email") Personal Email
                             input.form-control#email(type="text", [disabled]="true", [value]="modelPersonalEmail", (change)="changeEvent($event, 'email')")
                         div.col-12.col-md-6.mb-2
-                            label(for="lastEducation") Marital Status
+                            label(for="lastEducation") Education
                             select#lastEducation.form-control([value]="modelLastEducation", (change)="changeEvent($event, 'lastEducation')")
                                 option(*ngFor="let edu of education", [value]='edu') {{edu}}
                         div.col-12.col-md-6.mb-2

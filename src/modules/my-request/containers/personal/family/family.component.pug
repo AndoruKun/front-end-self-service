@@ -13,7 +13,7 @@ ngb-accordion(#a="ngbAccordion", activeIds="custom-panel-1")
                     div {{request.employeeName}}
                     div Request Date :
                     div {{request.requestDateTime | date: "dd MMM yyyy"}}
-                div.col-6.text-right
+                div.col-6.text-right(*ngIf="request.status === 'APPROVED' || request.status === 'REJECTED'")
                     div Approve Date :
                     div {{request.approvedDatetime == null ? 'Not Yet' : request.approvedDatetime}}
                 div.col-12.mt-2

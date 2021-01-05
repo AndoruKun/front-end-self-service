@@ -60,7 +60,7 @@
                         <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" [value]="modelNoKK" (change)="changeEvent($event, 'kk')" /></div>
                         <div class="col-12 col-md-6 mb-2"><label for="email">Personal Email</label><input class="form-control" id="email" type="text" [disabled]="true" [value]="modelPersonalEmail" (change)="changeEvent($event, 'email')" /></div>
                         <div class="col-12 col-md-6 mb-2">
-                            <label for="lastEducation">Marital Status</label
+                            <label for="lastEducation">Education</label
                             ><select class="form-control" id="lastEducation" [value]="modelLastEducation" (change)="changeEvent($event, 'lastEducation')">
                                 <option *ngFor="let edu of education" [value]="edu">{{edu}}</option>
                             </select>

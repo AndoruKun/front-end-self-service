@@ -6,7 +6,7 @@ sb-layout-address
         ngb-panel([attr.id]="i == 0 ? 'custom-panel 1' : ''", *ngFor="let request of listRequestAddress; let i = index")
             ng-template(ngbPanelHeader)
                 div.d-flex.align-items-center.justify-content-between
-                    button.btn.btn-link.p-0(ngbPanelToggle) Address {{request.primaryFlag ? 'Primary' : i+1}}
+                    button.btn.btn-link.p-0(ngbPanelToggle) Address {{request.address}}
             ng-template(ngbPanelContent)
                 div.row
                     div.col-12.mt-2
