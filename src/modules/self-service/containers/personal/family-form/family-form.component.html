@@ -48,8 +48,8 @@
             <option *ngFor="let status of maritalStatus" [value]="status">{{status}}</option>
         </select>
     </div>
-    <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" (change)="changeEvent($event, 'kk')" [(ngModel)]="modelKK" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="nik">No. NIK</label><input class="form-control" id="nik" type="text" (change)="changeEvent($event, 'nik')" [(ngModel)]="modelNik" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="number" (change)="changeEvent($event, 'kk')" [(ngModel)]="modelKK" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="nik">No. NIK</label><input class="form-control" id="nik" type="number" (change)="changeEvent($event, 'nik')" [(ngModel)]="modelNik" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="address">Address</label><textarea class="form-control" id="address" placeholder="Enter address detail" (change)="changeEvent($event, 'address')" [(ngModel)]="modelAddress"></textarea></div>
     <div class="col-12 col-md-6 mb-2">
         <label for="marriedDate">Married Date</label>
@@ -61,8 +61,8 @@
         </div>
     </div>
     <div class="col-12 col-md-6 mb-2"><label for="city">City</label><input class="form-control" id="city" type="text" placeholder="Enter City" (change)="changeEvent($event, 'city')" [(ngModel)]="modelCity" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="zipCode">ZIP Code</label><input class="form-control" id="zipCode" type="text" placeholder="e.g. 4546" (change)="changeEvent($event, 'zipCode')" [(ngModel)]="modelZipcode" /></div>
-    <div class="col-12 col-md-6 mb-2"><label for="phone">Phone</label><input class="form-control" id="phone" type="text" placeholder="e.g. 02145XXX" (change)="changeEvent($event, 'phone')" [(ngModel)]="modelPhone" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="zipCode">ZIP Code</label><input class="form-control" id="zipCode" type="number" placeholder="e.g. 4546" (change)="changeEvent($event, 'zipCode')" [(ngModel)]="modelZipcode" /></div>
+    <div class="col-12 col-md-6 mb-2"><label for="phone">Phone</label><input class="form-control" id="phone" type="number" placeholder="e.g. 02145XXX" (change)="changeEvent($event, 'phone')" [(ngModel)]="modelPhone" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="email">Email</label><input class="form-control" id="email" type="text" placeholder="Enter Email" (change)="changeEvent($event, 'email')" [(ngModel)]="modelEmail" /></div>
     <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks" type="text" (change)="changeEvent($event, 'remark')" /></div>
     <div class="form-group col-12 mb-2"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>

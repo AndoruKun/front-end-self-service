@@ -42,10 +42,10 @@ div.row
             option(*ngFor="let status of maritalStatus", [value]='status') {{status}}
     div.col-12.col-md-6.mb-2
         label(for="kk") No. KK
-        input.form-control#kk(type="text", (change)="changeEvent($event, 'kk')", [(ngModel)]="modelKK")
+        input.form-control#kk(type="number", (change)="changeEvent($event, 'kk')", [(ngModel)]="modelKK")
     div.col-12.col-md-6.mb-2
         label(for="nik") No. NIK
-        input.form-control#nik(type="text", (change)="changeEvent($event, 'nik')", [(ngModel)]="modelNik")
+        input.form-control#nik(type="number", (change)="changeEvent($event, 'nik')", [(ngModel)]="modelNik")
     div.col-12.col-md-6.mb-2
         label(for="address") Address
         textarea.form-control#address(placeholder="Enter address detail", (change)="changeEvent($event, 'address')", [(ngModel)]="modelAddress")
@@ -61,10 +61,10 @@ div.row
         input.form-control#city(type="text", placeholder="Enter City", (change)="changeEvent($event, 'city')", [(ngModel)]="modelCity")
     div.col-12.col-md-6.mb-2
         label(for="zipCode") ZIP Code
-        input.form-control#zipCode(type="text", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [(ngModel)]="modelZipcode")
+        input.form-control#zipCode(type="number", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [(ngModel)]="modelZipcode")
     div.col-12.col-md-6.mb-2
         label(for="phone") Phone
-        input.form-control#phone(type="text", placeholder="e.g. 02145XXX", (change)="changeEvent($event, 'phone')", [(ngModel)]="modelPhone")
+        input.form-control#phone(type="number", placeholder="e.g. 02145XXX", (change)="changeEvent($event, 'phone')", [(ngModel)]="modelPhone")
     div.col-12.col-md-6.mb-2
         label(for="email") Email
         input.form-control#email(type="text", placeholder="Enter Email", (change)="changeEvent($event, 'email')", [(ngModel)]="modelEmail")

@@ -44,10 +44,10 @@ div.d-flex.row
                                         fa-icon([icon]='["fas", "calendar-alt"]')
                         div.col-12.col-md-6.mb-2
                             label(for="npwp") No. NPWP
-                            input.form-control#npwp(type="text", [value]="modelNoNPWP", (change)="changeEvent($event, 'npwp')")
+                            input.form-control#npwp(type="number", [value]="modelNoNPWP", (change)="changeEvent($event, 'npwp')")
                         div.col-12.col-md-6.mb-2
                             label(for="kk") No. KK
-                            input.form-control#kk(type="text", [value]="modelNoKK", (change)="changeEvent($event, 'kk')")
+                            input.form-control#kk(type="number", [value]="modelNoKK", (change)="changeEvent($event, 'kk')")
                         div.col-12.col-md-6.mb-2
                             label(for="email") Personal Email
                             input.form-control#email(type="text", [disabled]="true", [value]="modelPersonalEmail", (change)="changeEvent($event, 'email')")
@@ -57,7 +57,7 @@ div.d-flex.row
                                 option(*ngFor="let edu of education", [value]='edu') {{edu}}
                         div.col-12.col-md-6.mb-2
                             label(for="phone") Mobile Phone
-                            input.form-control#phone(type="text", [value]="modelMobilePhone", (change)="changeEvent($event, 'phone')")
+                            input.form-control#phone(type="number", [value]="modelMobilePhone", (change)="changeEvent($event, 'phone')")
                         div.col-12.col-md-6.mb-2
                             label(for="remark") Remark
                             input.form-control#remark(placeholder="Type remarks for the benefit claim...", type="text", (change)="changeEvent($event, 'remark')")

@@ -22,7 +22,7 @@ div.row
         input.form-control#country(type="text", placeholder="Enter Country e.g. Indonesia", (change)="changeEvent($event, 'country')", [(ngModel)]="modelCountry")
     div.col-12.col-md-6.mb-2
         label(for="zipCode") ZIP Code
-        input.form-control#zipCode(type="text", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [(ngModel)]="modelZipcode")
+        input.form-control#zipCode(type="number", placeholder="e.g. 4546", (change)="changeEvent($event, 'zipCode')", [(ngModel)]="modelZipcode")
     div.col-12.col-md-6.mb-2
         label(for="stayStatus") Stay Status
         select#stayStatus.form-control((change)="changeEvent($event, 'stayStatus')", [(ngModel)]="modelStatuStay")

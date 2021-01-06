@@ -56,8 +56,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-6 mb-2"><label for="npwp">No. NPWP</label><input class="form-control" id="npwp" type="text" [value]="modelNoNPWP" (change)="changeEvent($event, 'npwp')" /></div>
-                        <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="text" [value]="modelNoKK" (change)="changeEvent($event, 'kk')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="npwp">No. NPWP</label><input class="form-control" id="npwp" type="number" [value]="modelNoNPWP" (change)="changeEvent($event, 'npwp')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="kk">No. KK</label><input class="form-control" id="kk" type="number" [value]="modelNoKK" (change)="changeEvent($event, 'kk')" /></div>
                         <div class="col-12 col-md-6 mb-2"><label for="email">Personal Email</label><input class="form-control" id="email" type="text" [disabled]="true" [value]="modelPersonalEmail" (change)="changeEvent($event, 'email')" /></div>
                         <div class="col-12 col-md-6 mb-2">
                             <label for="lastEducation">Education</label
@@ -65,7 +65,7 @@
                                 <option *ngFor="let edu of education" [value]="edu">{{edu}}</option>
                             </select>
                         </div>
-                        <div class="col-12 col-md-6 mb-2"><label for="phone">Mobile Phone</label><input class="form-control" id="phone" type="text" [value]="modelMobilePhone" (change)="changeEvent($event, 'phone')" /></div>
+                        <div class="col-12 col-md-6 mb-2"><label for="phone">Mobile Phone</label><input class="form-control" id="phone" type="number" [value]="modelMobilePhone" (change)="changeEvent($event, 'phone')" /></div>
                         <div class="col-12 col-md-6 mb-2"><label for="remark">Remark</label><input class="form-control" id="remark" placeholder="Type remarks for the benefit claim..." type="text" (change)="changeEvent($event, 'remark')" /></div>
                         <div class="form-group col-12"><label for="attachDoc">Attach Document</label><input class="form-control-file" id="attachDoc" type="file" accept="image/*, .pdf" #fileUpload (change)="changeEvent($event, 'uploadFile')" /></div>
                         <div class="col-12 mb-2"><button class="btn btn-primary w-100" type="button" (click)="submitProc()" [disabled]="disabledBtn">Submit</button></div>

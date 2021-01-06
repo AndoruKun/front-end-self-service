@@ -26,6 +26,8 @@ export class LoginComponent implements OnInit {
 
 
     ngOnInit() {
+        this.modelEmail = ""
+        this.modelPassword = ""
         if (localStorage.getItem("username") !== null) {
             let email = localStorage.getItem("username")
             this.modelEmail = email? email : ""
