@@ -3,7 +3,7 @@
 <ngb-accordion #a="ngbAccordion" activeIds="custom-panel-1"
     ><ngb-panel [attr.id]="i == 0 ? 'custom-panel 1' : ''" *ngFor="let request of listDataAddress; let i = index"
         ><ng-template ngbPanelHeader
-            ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>Address {{request.primaryFlag ? 'Primary' : i+1}}</button></div></ng-template
+            ><div class="d-flex align-items-center justify-content-between"><button class="btn btn-link p-0" ngbPanelToggle>{{request.address}} {{request.primaryFlag ? '- Primary' : ''}}</button></div></ng-template
         ><ng-template ngbPanelContent
             ><div class="row">
                 <div class="col-12"><span [ngClass]="{'text-success': request.status === 'APPROVED', 'text-warning': request.status === 'PENDING', 'text-danger': request.status === 'REJECTED' || request.status === 'CANCEL'}">{{request.status}}</span></div>

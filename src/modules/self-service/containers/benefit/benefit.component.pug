@@ -21,7 +21,7 @@ div.row
             option(*ngFor="let data of reason", [value]='data') {{data}}
     div.col-12.col-md-6.mb-2
         label(for="claimAmount") Claim Amount
-        input.form-control#claimAmount(placeholder="Rp. 0", type="number", (change)="changeEvent($event, 'claimAmount')",
+        input.form-control#claimAmount(placeholder="Rp. 0", type="text", (change)="changeEvent($event, 'claimAmount')",
             (blur)="maskCurrency($event)", (focus)="onFocus($event)")
     div.col-12.col-md-6.mb-2
         label(for="remark") Remark
